@@ -12,6 +12,8 @@
 		24180CEF1E48FEBF000A3DCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24180CED1E48FEBF000A3DCF /* Main.storyboard */; };
 		24180CF11E48FEBF000A3DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24180CF01E48FEBF000A3DCF /* Assets.xcassets */; };
 		24180CF41E48FEBF000A3DCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24180CF21E48FEBF000A3DCF /* LaunchScreen.storyboard */; };
+		24180CFC1E48FF63000A3DCF /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CFB1E48FF63000A3DCF /* MapView.swift */; };
+		24180CFE1E48FFB1000A3DCF /* TableViewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CFD1E48FFB1000A3DCF /* TableViewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		24180CF01E48FEBF000A3DCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24180CF31E48FEBF000A3DCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24180CF51E48FEBF000A3DCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24180CFB1E48FF63000A3DCF /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		24180CFD1E48FFB1000A3DCF /* TableViewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				24180CE91E48FEBF000A3DCF /* AppDelegate.swift */,
 				24180CEB1E48FEBF000A3DCF /* ViewController.swift */,
 				24180CED1E48FEBF000A3DCF /* Main.storyboard */,
+				24180CFD1E48FFB1000A3DCF /* TableViewView.swift */,
+				24180CFB1E48FF63000A3DCF /* MapView.swift */,
 				24180CF01E48FEBF000A3DCF /* Assets.xcassets */,
 				24180CF21E48FEBF000A3DCF /* LaunchScreen.storyboard */,
 				24180CF51E48FEBF000A3DCF /* Info.plist */,
@@ -137,6 +143,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				24180CEC1E48FEBF000A3DCF /* ViewController.swift in Sources */,
+				24180CFE1E48FFB1000A3DCF /* TableViewView.swift in Sources */,
+				24180CFC1E48FF63000A3DCF /* MapView.swift in Sources */,
 				24180CEA1E48FEBF000A3DCF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
