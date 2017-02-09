@@ -21,48 +21,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70y-qF-BRv" customClass="MapView" customModule="SlideOverMap" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="1" green="0.18257334650000001" blue="0.10674279540000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d49-Ey-oXB" userLabel="Back View">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uVO-fZ-KXQ" customClass="TableViewView" customModule="SlideOverMap" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hD0-KZ-wSU">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstItem="hD0-KZ-wSU" firstAttribute="top" secondItem="uVO-fZ-KXQ" secondAttribute="top" id="8Q5-g1-lpp"/>
-                                    <constraint firstAttribute="bottom" secondItem="hD0-KZ-wSU" secondAttribute="bottom" id="p2d-yB-AQf"/>
-                                    <constraint firstItem="hD0-KZ-wSU" firstAttribute="leading" secondItem="uVO-fZ-KXQ" secondAttribute="leading" id="r4P-dp-wLs"/>
-                                    <constraint firstAttribute="trailing" secondItem="hD0-KZ-wSU" secondAttribute="trailing" id="zmv-i8-UkG"/>
-                                </constraints>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="no3-Lc-4Hs" userLabel="Slide View">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="lEJ-kf-Guh" appends="YES" id="SJE-hJ-eTj"/>
+                                    <outletCollection property="gestureRecognizers" destination="lEJ-kf-Guh" appends="YES" id="eI2-db-eql"/>
                                 </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="70y-qF-BRv" firstAttribute="top" secondItem="oi5-21-rqU" secondAttribute="top" id="EIZ-OJ-hG7"/>
-                            <constraint firstAttribute="trailing" secondItem="uVO-fZ-KXQ" secondAttribute="trailing" id="RRd-NG-dci"/>
-                            <constraint firstItem="70y-qF-BRv" firstAttribute="leading" secondItem="oi5-21-rqU" secondAttribute="leading" id="V3u-z7-wFk"/>
-                            <constraint firstItem="Myp-YA-Jq1" firstAttribute="top" secondItem="uVO-fZ-KXQ" secondAttribute="bottom" id="XXl-I6-XxZ"/>
-                            <constraint firstAttribute="trailing" secondItem="70y-qF-BRv" secondAttribute="trailing" id="c5U-Vx-Rzq"/>
-                            <constraint firstItem="uVO-fZ-KXQ" firstAttribute="leading" secondItem="oi5-21-rqU" secondAttribute="leading" id="gxa-kJ-bKH"/>
-                            <constraint firstItem="uVO-fZ-KXQ" firstAttribute="top" secondItem="oi5-21-rqU" secondAttribute="top" id="heP-rL-v8R"/>
-                            <constraint firstItem="Myp-YA-Jq1" firstAttribute="top" secondItem="70y-qF-BRv" secondAttribute="bottom" id="if9-jB-Eev"/>
+                            <constraint firstItem="no3-Lc-4Hs" firstAttribute="top" secondItem="zxP-nu-czO" secondAttribute="bottom" constant="100" id="6DT-Au-6EE"/>
+                            <constraint firstItem="d49-Ey-oXB" firstAttribute="top" secondItem="zxP-nu-czO" secondAttribute="bottom" id="8Dd-Aa-AwZ"/>
+                            <constraint firstItem="no3-Lc-4Hs" firstAttribute="leading" secondItem="oi5-21-rqU" secondAttribute="leading" id="J5D-DO-70V"/>
+                            <constraint firstItem="d49-Ey-oXB" firstAttribute="leading" secondItem="oi5-21-rqU" secondAttribute="leading" id="Nfi-J2-HxZ"/>
+                            <constraint firstAttribute="trailing" secondItem="d49-Ey-oXB" secondAttribute="trailing" id="hir-6s-zpH"/>
+                            <constraint firstAttribute="trailing" secondItem="no3-Lc-4Hs" secondAttribute="trailing" id="ipf-YP-sp6"/>
+                            <constraint firstItem="Myp-YA-Jq1" firstAttribute="top" secondItem="d49-Ey-oXB" secondAttribute="bottom" id="mYx-Fo-7wQ"/>
+                            <constraint firstItem="Myp-YA-Jq1" firstAttribute="top" secondItem="no3-Lc-4Hs" secondAttribute="bottom" id="zMG-rC-1QM"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mapViewView" destination="70y-qF-BRv" id="GEE-or-yah"/>
-                        <outlet property="tableView" destination="hD0-KZ-wSU" id="zOh-qj-gRF"/>
-                        <outlet property="tableViewView" destination="uVO-fZ-KXQ" id="iti-9H-YZq"/>
-                        <outlet property="topOfTableView" destination="heP-rL-v8R" id="wsF-TV-aKI"/>
+                        <outlet property="backView" destination="d49-Ey-oXB" id="iCO-6z-X7b"/>
+                        <outlet property="slideyTopConstraint" destination="6DT-Au-6EE" id="Bfb-EA-8hz"/>
+                        <outlet property="slideyView" destination="no3-Lc-4Hs" id="Tbw-Fc-sRi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -73,6 +59,52 @@
                 </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="G6z-Mz-U51">
+            <objects>
+                <viewController storyboardIdentifier="Map View Controller" id="lf9-Hk-sgP" customClass="MapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kgm-C6-gph"/>
+                        <viewControllerLayoutGuide type="bottom" id="3y0-qY-r8Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PTA-dL-omy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.18257334650000001" blue="0.10674279540000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FZl-MK-jAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1073" y="534"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="H4E-Eb-EZU">
+            <objects>
+                <tableViewController storyboardIdentifier="Table View Controller" id="kEY-Qz-WXN" customClass="TableViewController" customModule="SlideOverMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="STe-zv-TTd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="e3g-c4-2af">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e3g-c4-2af" id="aja-gb-TPi">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kEY-Qz-WXN" id="n70-qj-9z1"/>
+                            <outlet property="delegate" destination="kEY-Qz-WXN" id="7hf-YT-oxT"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Txk-xE-bpV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1080" y="-215"/>
         </scene>
     </scenes>
 </document>

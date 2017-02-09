@@ -16,6 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let rootViewController = self.window?.rootViewController as! ViewController
+        let storyboard = rootViewController.storyboard
+        
+        let mapViewController = storyboard?.instantiateViewController(withIdentifier: "Map View Controller")
+        let tableViewController = storyboard?.instantiateViewController(withIdentifier: "Table View Controller") as! UITableViewController
+        
+        
+        rootViewController.setBack(mapViewController!)
+        rootViewController.setSlidey(tableViewController)
+        
         return true
     }
 
