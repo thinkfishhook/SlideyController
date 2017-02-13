@@ -4,7 +4,7 @@
 
 import UIKit
 
-class MapView: UIViewController {
+class MapViewController: UIViewController {
     
     
 }

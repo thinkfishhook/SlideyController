@@ -63,7 +63,7 @@
         <!--Map View Controller-->
         <scene sceneID="G6z-Mz-U51">
             <objects>
-                <viewController storyboardIdentifier="Map View Controller" id="lf9-Hk-sgP" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Map View Controller" id="lf9-Hk-sgP" customClass="MapViewController" customModule="SlideOverMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kgm-C6-gph"/>
                         <viewControllerLayoutGuide type="bottom" id="3y0-qY-r8Z"/>
