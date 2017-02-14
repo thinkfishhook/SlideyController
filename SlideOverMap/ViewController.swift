@@ -46,7 +46,7 @@ class SlideyController: UIViewController, UIGestureRecognizerDelegate {
         
         minTopConstant = view.frame.height * 0.2
         maxTopConstant = view.frame.height * 0.8
-        slideyTopConstraint.constant = minTopConstant
+        slideyTopConstraint.constant = maxTopConstant
         beginConstant = slideyTopConstraint.constant
         
         backView.addSubview(mapViewController.view)
@@ -129,7 +129,7 @@ class SlideyController: UIViewController, UIGestureRecognizerDelegate {
     private var mapViewController: UIViewController!
     
     private var panGestureRecognizer: UIPanGestureRecognizer!
-    private var panGestureRecognizingState: GestureState = .Inactive
+    private var panGestureRecognizingState: GestureState = .Active
     
     @IBOutlet private weak var slideyTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var slideyView: UIView!
@@ -145,10 +145,16 @@ class SlideyController: UIViewController, UIGestureRecognizerDelegate {
             switch slideyPosition {
             case .Bottom:
                 slideableViewController.didSnapToBottom()
+                if let backViewController = mapViewController as? MapViewController {
+                    backViewController.mapView.isUserInteractionEnabled = true
+                }
             case .Top:
                 panGestureRecognizingState = .Inactive
                 
                 slideableViewController.didSnapToTop()
+                if let backViewController = mapViewController as? MapViewController {
+                    backViewController.mapView.isUserInteractionEnabled = false
+                }
             }
         }
     }
