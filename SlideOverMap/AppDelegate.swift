@@ -1,9 +1,5 @@
 //
-//  AppDelegate.swift
-//  SlideOverMap
-//
-//  Created by John Hoedeman on 2/6/17.
-//  Copyright © 2017 John Hoedeman. All rights reserved.
+//  Copyright © 2017 Fish Hook LLC. All rights reserved.
 //
 
 import UIKit
