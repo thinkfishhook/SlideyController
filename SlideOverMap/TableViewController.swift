@@ -10,6 +10,7 @@ class TableViewController: UITableViewController {
     
 }
 
+// MARK: Scroll View Delegate
 extension TableViewController {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView)
@@ -17,6 +18,11 @@ extension TableViewController {
         overScrolling = scrollView.contentOffset.y <= 0 ? true : false
         print(overScrolling)
     }
+    
+}
+
+// MARK: Slideable
+extension TableViewController: Slideable {
     
     func didSnapToBottom()
     {

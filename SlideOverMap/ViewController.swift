@@ -4,11 +4,24 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+protocol Slideable {
+    
+}
 
-    @IBOutlet weak var slideyTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var slideyView: UIView!
-    @IBOutlet weak var backView: UIView!
+private enum Position {
+    case Bottom
+    case Top
+}
+
+private enum GestureState {
+    case Active
+    case Inactive
+}
+
+class SlideyController<SlideViewController: UIViewController>: UIViewController, UIGestureRecognizerDelegate where SlideViewController: Slideable {
+    
+    var frontViewController: SlideViewController?
+    var backViewController: UIViewController?
     
     func setBack(_ back: MapViewController)
     {
@@ -22,7 +35,9 @@ class ViewController: UIViewController {
         addChildViewController(slidey)
     }
     
-    override func viewDidLoad() {
+    // MARK: View Life Cycle
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         minTopConstant = view.frame.height * 0.2
@@ -48,6 +63,7 @@ class ViewController: UIViewController {
         panGestureRecognizer.delegate = self
     }
     
+    // MARK: Interface Builder Actions
     @IBAction func gestureRecognized(_ sender: UIPanGestureRecognizer)
     {
         if panGestureRecognizingState == .Inactive && tableViewController.overScrolling == true  {
@@ -75,6 +91,13 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: Gesture Recognizer Delegate
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
+    {
+        return true
+    }
+    
+    // MARK: Private Helpers
     private func newTopConstant(translationY: CGFloat) -> CGFloat
     {
         let newConstant = slideyTopConstraint.constant + translationY
@@ -94,6 +117,10 @@ class ViewController: UIViewController {
     private var panGestureRecognizer: UIPanGestureRecognizer!
     private var panGestureRecognizingState: GestureState = .Inactive
     
+    @IBOutlet private weak var slideyTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var slideyView: UIView!
+    @IBOutlet private weak var backView: UIView!
+    
     private var minTopConstant: CGFloat!
     private var maxTopConstant: CGFloat!
     private var beginConstant: CGFloat!
@@ -111,23 +138,4 @@ class ViewController: UIViewController {
             }
         }
     }
-    
-    enum Position {
-        case Bottom
-        case Top
-    }
-    
-    enum GestureState {
-        case Active
-        case Inactive
-    }
 }
-
-extension ViewController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
-    {
-        return true
-    }
-}
-
