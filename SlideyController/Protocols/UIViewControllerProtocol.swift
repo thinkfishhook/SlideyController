@@ -7,6 +7,8 @@ import UIKit
 public protocol UIViewControllerProtocol {
     
     var view: UIView! { get }
+    
+    func removeFromParentViewController()
 }
 
 extension UIViewController: UIViewControllerProtocol { }

@@ -20,6 +20,7 @@
 		2ACFCBBC1E55003F00F23F4F /* BackSlideable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBBB1E55003F00F23F4F /* BackSlideable.swift */; };
 		2ACFCBBF1E55009200F23F4F /* UIViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBBE1E55009200F23F4F /* UIViewControllerProtocol.swift */; };
 		2ACFCBC11E5500C100F23F4F /* FrontSlideable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBC01E5500C100F23F4F /* FrontSlideable.swift */; };
+		2ACFCBC31E55037900F23F4F /* UIViewController+SlideyAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBC21E55037900F23F4F /* UIViewController+SlideyAdditions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		2ACFCBBB1E55003F00F23F4F /* BackSlideable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackSlideable.swift; sourceTree = "<group>"; };
 		2ACFCBBE1E55009200F23F4F /* UIViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerProtocol.swift; sourceTree = "<group>"; };
 		2ACFCBC01E5500C100F23F4F /* FrontSlideable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontSlideable.swift; sourceTree = "<group>"; };
+		2ACFCBC21E55037900F23F4F /* UIViewController+SlideyAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+SlideyAdditions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				2ACFCBB91E54FFAC00F23F4F /* UIView+SlideyAdditions.swift */,
+				2ACFCBC21E55037900F23F4F /* UIViewController+SlideyAdditions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ACFCBC31E55037900F23F4F /* UIViewController+SlideyAdditions.swift in Sources */,
 				2ACFCBBF1E55009200F23F4F /* UIViewControllerProtocol.swift in Sources */,
 				2ACFCBC11E5500C100F23F4F /* FrontSlideable.swift in Sources */,
 				2ACFCBBC1E55003F00F23F4F /* BackSlideable.swift in Sources */,

@@ -6,19 +6,37 @@ import UIKit
 
 public class SlideyController: UIViewController {
     
-    public func setBack(_ back: BackSlideable)
-    {
-        backViewController = back
-        if let viewController = back as? UIViewController {
+    public var slideableViewController: FrontSlideable? {
+        willSet {
+            guard let viewController = slideableViewController else { return }
+            
+            viewController.view.removeFromSuperview()
+            viewController.removeFromParentViewController()
+        }
+        didSet {
+            guard let viewController = slideableViewController else { return }
+            
             addChildViewController(viewController)
+            if isViewLoaded {
+                addSlideSubview(viewController.view)
+            }
         }
     }
     
-    public func setFront(_ slidey: FrontSlideable)
-    {
-        slideableViewController = slidey
-        if let viewController = slidey as? UIViewController {
+    public var backViewController: BackSlideable? {
+        willSet {
+            guard let viewController = backViewController else { return }
+            
+            viewController.view.removeFromSuperview()
+            viewController.removeFromParentViewController()
+        }
+        didSet {
+            guard let viewController = backViewController else { return }
+            
             addChildViewController(viewController)
+            if isViewLoaded {
+                addBackSubview(viewController.view)
+            }
         }
     }
     
@@ -41,9 +59,6 @@ public class SlideyController: UIViewController {
             addBackSubview(view)
         }
     }
-    
-    fileprivate var slideableViewController: FrontSlideable?
-    private var backViewController: BackSlideable?
     
     fileprivate var panGestureRecognizingState: GestureState = .Active
     
