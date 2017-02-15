@@ -15,7 +15,7 @@
 		24180CFE1E48FFB1000A3DCF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CFD1E48FFB1000A3DCF /* TableViewController.swift */; };
 		2ACFCBA71E54FD8300F23F4F /* SlideyController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2ACFCBA51E54FD8300F23F4F /* SlideyController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2ACFCBAF1E54FE5900F23F4F /* SlideyController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */; };
-		2ACFCBB81E54FFA500F23F4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBB71E54FFA500F23F4F /* ViewController.swift */; };
+		2ACFCBB81E54FFA500F23F4F /* SlideyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBB71E54FFA500F23F4F /* SlideyController.swift */; };
 		2ACFCBBA1E54FFAC00F23F4F /* UIView+SlideyAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBB91E54FFAC00F23F4F /* UIView+SlideyAdditions.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +41,7 @@
 		2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SlideyController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ACFCBA51E54FD8300F23F4F /* SlideyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideyController.h; sourceTree = "<group>"; };
 		2ACFCBA61E54FD8300F23F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2ACFCBB71E54FFA500F23F4F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2ACFCBB71E54FFA500F23F4F /* SlideyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideyController.swift; sourceTree = "<group>"; };
 		2ACFCBB91E54FFAC00F23F4F /* UIView+SlideyAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SlideyAdditions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,7 +142,7 @@
 		2ACFCBB61E54FF5600F23F4F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2ACFCBB71E54FFA500F23F4F /* ViewController.swift */,
+				2ACFCBB71E54FFA500F23F4F /* SlideyController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -274,7 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ACFCBBA1E54FFAC00F23F4F /* UIView+SlideyAdditions.swift in Sources */,
-				2ACFCBB81E54FFA500F23F4F /* ViewController.swift in Sources */,
+				2ACFCBB81E54FFA500F23F4F /* SlideyController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
