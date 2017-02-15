@@ -16,7 +16,7 @@ public class SlideyController: UIViewController {
         didSet {
             guard let viewController = slideableViewController else { return }
             
-            addChildViewController(viewController)
+            addChildViewControllerProtocol(viewController)
             if isViewLoaded() {
                 addSlideSubview(viewController.view)
             }
@@ -33,7 +33,7 @@ public class SlideyController: UIViewController {
         didSet {
             guard let viewController = backViewController else { return }
             
-            addChildViewController(viewController)
+            addChildViewControllerProtocol(viewController)
             if isViewLoaded() {
                 addBackSubview(viewController.view)
             }
@@ -41,7 +41,7 @@ public class SlideyController: UIViewController {
     }
     
     // MARK: View Life Cycle
-    
+     
     override public func viewDidLoad()
     {
         super.viewDidLoad()

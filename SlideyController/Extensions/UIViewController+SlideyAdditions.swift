@@ -6,7 +6,7 @@ import UIKit
 
 extension UIViewController {
     
-    func addChildViewController(_ child: UIViewControllerProtocol)
+    func addChildViewControllerProtocol(_ child: UIViewControllerProtocol)
     {
         guard let viewController = child as? UIViewController else { fatalError("addChildViewController(_:) must be called with UIViewController") }
         

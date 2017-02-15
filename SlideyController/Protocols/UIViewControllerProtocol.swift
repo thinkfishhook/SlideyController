@@ -4,7 +4,7 @@
 
 import UIKit
 
-public protocol UIViewControllerProtocol {
+@objc public protocol UIViewControllerProtocol {
     
     var view: UIView! { get }
     
