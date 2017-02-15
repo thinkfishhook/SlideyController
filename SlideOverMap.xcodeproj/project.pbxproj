@@ -17,6 +17,9 @@
 		2ACFCBAF1E54FE5900F23F4F /* SlideyController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */; };
 		2ACFCBB81E54FFA500F23F4F /* SlideyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBB71E54FFA500F23F4F /* SlideyController.swift */; };
 		2ACFCBBA1E54FFAC00F23F4F /* UIView+SlideyAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBB91E54FFAC00F23F4F /* UIView+SlideyAdditions.swift */; };
+		2ACFCBBC1E55003F00F23F4F /* BackSlideable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBBB1E55003F00F23F4F /* BackSlideable.swift */; };
+		2ACFCBBF1E55009200F23F4F /* UIViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBBE1E55009200F23F4F /* UIViewControllerProtocol.swift */; };
+		2ACFCBC11E5500C100F23F4F /* FrontSlideable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBC01E5500C100F23F4F /* FrontSlideable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,9 @@
 		2ACFCBA61E54FD8300F23F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ACFCBB71E54FFA500F23F4F /* SlideyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideyController.swift; sourceTree = "<group>"; };
 		2ACFCBB91E54FFAC00F23F4F /* UIView+SlideyAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SlideyAdditions.swift"; sourceTree = "<group>"; };
+		2ACFCBBB1E55003F00F23F4F /* BackSlideable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackSlideable.swift; sourceTree = "<group>"; };
+		2ACFCBBE1E55009200F23F4F /* UIViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerProtocol.swift; sourceTree = "<group>"; };
+		2ACFCBC01E5500C100F23F4F /* FrontSlideable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontSlideable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,8 @@
 		2ACFCBB21E54FF3700F23F4F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				2ACFCBBB1E55003F00F23F4F /* BackSlideable.swift */,
+				2ACFCBC01E5500C100F23F4F /* FrontSlideable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -134,6 +142,7 @@
 		2ACFCBB51E54FF4C00F23F4F /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				2ACFCBBD1E55007800F23F4F /* Protocols */,
 				2ACFCBB31E54FF3E00F23F4F /* Extensions */,
 			);
 			name = Private;
@@ -145,6 +154,14 @@
 				2ACFCBB71E54FFA500F23F4F /* SlideyController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		2ACFCBBD1E55007800F23F4F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				2ACFCBBE1E55009200F23F4F /* UIViewControllerProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +290,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ACFCBBF1E55009200F23F4F /* UIViewControllerProtocol.swift in Sources */,
+				2ACFCBC11E5500C100F23F4F /* FrontSlideable.swift in Sources */,
+				2ACFCBBC1E55003F00F23F4F /* BackSlideable.swift in Sources */,
 				2ACFCBBA1E54FFAC00F23F4F /* UIView+SlideyAdditions.swift in Sources */,
 				2ACFCBB81E54FFA500F23F4F /* SlideyController.swift in Sources */,
 			);

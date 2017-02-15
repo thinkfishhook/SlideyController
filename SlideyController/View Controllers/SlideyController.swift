@@ -4,29 +4,9 @@
 
 import UIKit
 
-public protocol Slideable: class, UIViewControllerProtocol {
-    
-    var overScrolling: Bool { get set }
-    
-    func didSnapToBottom()
-    func didSnapToTop()
-}
-
-public protocol SlideyBackType: class, UIViewControllerProtocol {
-    
-    var isUserInteractionEnabled: Bool { get set }
-}
-
-public protocol UIViewControllerProtocol {
-    
-    var view: UIView! { get }
-}
-
-extension UIViewController: UIViewControllerProtocol { }
-
 public class SlideyController: UIViewController {
     
-    public func setBack(_ back: SlideyBackType)
+    public func setBack(_ back: BackSlideable)
     {
         backViewController = back
         if let viewController = back as? UIViewController {
@@ -34,7 +14,7 @@ public class SlideyController: UIViewController {
         }
     }
     
-    public func setFront(_ slidey: Slideable)
+    public func setFront(_ slidey: FrontSlideable)
     {
         slideableViewController = slidey
         if let viewController = slidey as? UIViewController {
@@ -60,13 +40,10 @@ public class SlideyController: UIViewController {
         if let view = slideableViewController?.view {
             addBackSubview(view)
         }
-        
-        panGestureRecognizer = slideyView.gestureRecognizers?.first as! UIPanGestureRecognizer
-        panGestureRecognizer.delegate = self
     }
     
-    fileprivate var slideableViewController: Slideable?
-    private var backViewController: SlideyBackType?
+    fileprivate var slideableViewController: FrontSlideable?
+    private var backViewController: BackSlideable?
     
     fileprivate var panGestureRecognizingState: GestureState = .Active
     

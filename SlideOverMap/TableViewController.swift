@@ -22,7 +22,7 @@ extension TableViewController {
 
 // MARK: Slideable
 
-extension TableViewController: Slideable {
+extension TableViewController: FrontSlideable {
     
     func didSnapToBottom()
     {

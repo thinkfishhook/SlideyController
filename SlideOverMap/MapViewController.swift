@@ -12,7 +12,7 @@ class MapViewController: UIViewController {
     
 }
 
-extension MapViewController: SlideyBackType {
+extension MapViewController: BackSlideable {
     
     var isUserInteractionEnabled: Bool {
         get {
