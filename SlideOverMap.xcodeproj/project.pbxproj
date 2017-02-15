@@ -14,6 +14,7 @@
 		24180CF41E48FEBF000A3DCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24180CF21E48FEBF000A3DCF /* LaunchScreen.storyboard */; };
 		24180CFC1E48FF63000A3DCF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CFB1E48FF63000A3DCF /* MapViewController.swift */; };
 		24180CFE1E48FFB1000A3DCF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CFD1E48FFB1000A3DCF /* TableViewController.swift */; };
+		2ACFCB9D1E54F35600F23F4F /* UIView+SlideyAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCB9C1E54F35600F23F4F /* UIView+SlideyAdditions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		24180CF51E48FEBF000A3DCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24180CFB1E48FF63000A3DCF /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		24180CFD1E48FFB1000A3DCF /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		2ACFCB9C1E54F35600F23F4F /* UIView+SlideyAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SlideyAdditions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				24180CF01E48FEBF000A3DCF /* Assets.xcassets */,
 				24180CF21E48FEBF000A3DCF /* LaunchScreen.storyboard */,
 				24180CF51E48FEBF000A3DCF /* Info.plist */,
+				2ACFCB9C1E54F35600F23F4F /* UIView+SlideyAdditions.swift */,
 			);
 			path = SlideOverMap;
 			sourceTree = "<group>";
@@ -98,7 +101,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = "John Hoedeman";
+				ORGANIZATIONNAME = "Fish Hook LLC";
 				TargetAttributes = {
 					24180CE51E48FEBF000A3DCF = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -142,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ACFCB9D1E54F35600F23F4F /* UIView+SlideyAdditions.swift in Sources */,
 				24180CEC1E48FEBF000A3DCF /* ViewController.swift in Sources */,
 				24180CFE1E48FFB1000A3DCF /* TableViewController.swift in Sources */,
 				24180CFC1E48FF63000A3DCF /* MapViewController.swift in Sources */,

@@ -47,6 +47,7 @@
                     </view>
                     <connections>
                         <outlet property="backView" destination="d49-Ey-oXB" id="iCO-6z-X7b"/>
+                        <outlet property="panGestureRecognizer" destination="lEJ-kf-Guh" id="C5x-NC-VM8"/>
                         <outlet property="slideyTopConstraint" destination="6DT-Au-6EE" id="Bfb-EA-8hz"/>
                         <outlet property="slideyView" destination="no3-Lc-4Hs" id="Tbw-Fc-sRi"/>
                     </connections>
@@ -55,6 +56,7 @@
                 <panGestureRecognizer minimumNumberOfTouches="1" id="lEJ-kf-Guh">
                     <connections>
                         <action selector="gestureRecognized:" destination="BYZ-38-t0r" id="r5c-xE-zaa"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="N3a-Eh-gZp"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>
@@ -105,7 +107,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e3g-c4-2af" id="aja-gb-TPi">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

@@ -4,7 +4,7 @@
 
 import UIKit
 
-protocol Slideable {
+protocol Slideable: class, UIViewControllerProtocol {
     
     var overScrolling: Bool { get set }
     
@@ -12,29 +12,33 @@ protocol Slideable {
     func didSnapToTop()
 }
 
-private enum Position {
-    case Bottom
-    case Top
-}
- 
-private enum GestureState {
-    case Active
-    case Inactive
+protocol SlideyBackType: class, UIViewControllerProtocol {
+    
+    var isUserInteractionEnabled: Bool { get set }
 }
 
-class SlideyController: UIViewController, UIGestureRecognizerDelegate {
+protocol UIViewControllerProtocol {
     
-    func setBack(_ back: UIViewController)
+    var view: UIView! { get }
+}
+
+extension UIViewController: UIViewControllerProtocol { }
+
+class SlideyController: UIViewController {
+    
+    func setBack(_ back: SlideyBackType)
     {
-        mapViewController = back
-        addChildViewController(back)
+        backViewController = back
+        if let viewController = back as? UIViewController {
+            addChildViewController(viewController)
+        }
     }
     
     func setFront(_ slidey: Slideable)
     {
         slideableViewController = slidey
-        if let tableViewController = slidey as? UIViewController {
-            addChildViewController(tableViewController)
+        if let viewController = slidey as? UIViewController {
+            addChildViewController(viewController)
         }
     }
     
@@ -49,31 +53,66 @@ class SlideyController: UIViewController, UIGestureRecognizerDelegate {
         slideyTopConstraint.constant = maxTopConstant
         beginConstant = slideyTopConstraint.constant
         
-        backView.addSubview(mapViewController.view)
-        mapViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint(item: mapViewController.view, attribute: .top, relatedBy: .equal, toItem: backView, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: mapViewController.view, attribute: .leading, relatedBy: .equal, toItem: backView, attribute: .leading, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: mapViewController.view, attribute: .trailing, relatedBy: .equal, toItem: backView, attribute: .trailing, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: mapViewController.view, attribute: .bottom, relatedBy: .equal, toItem: backView, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
+        if let view = backViewController?.view {
+            addBackSubview(view)
+        }
         
-        if let tableViewController = slideableViewController as? UIViewController {
-            slideyView.addSubview(tableViewController.view)
-            tableViewController.view.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint(item: tableViewController.view, attribute: .top, relatedBy: .equal, toItem: slideyView, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
-            NSLayoutConstraint(item: tableViewController.view, attribute: .leading, relatedBy: .equal, toItem: slideyView, attribute: .leading, multiplier: 1.0, constant: 0.0).isActive = true
-            NSLayoutConstraint(item: tableViewController.view, attribute: .trailing, relatedBy: .equal, toItem: slideyView, attribute: .trailing, multiplier: 1.0, constant: 0.0).isActive = true
-            NSLayoutConstraint(item: tableViewController.view, attribute: .bottom, relatedBy: .equal, toItem: slideyView, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
+        if let view = slideableViewController?.view {
+            addBackSubview(view)
         }
         
         panGestureRecognizer = slideyView.gestureRecognizers?.first as! UIPanGestureRecognizer
         panGestureRecognizer.delegate = self
     }
     
-    // MARK: Interface Builder Actions
+    fileprivate var slideableViewController: Slideable?
+    private var backViewController: SlideyBackType?
+    
+    fileprivate var panGestureRecognizingState: GestureState = .Active
+    
+    @IBOutlet fileprivate weak var panGestureRecognizer: UIPanGestureRecognizer!
+    @IBOutlet fileprivate weak var slideyTopConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var slideyView: UIView!
+    @IBOutlet fileprivate weak var backView: UIView!
+    
+    fileprivate var minTopConstant: CGFloat = 0.0
+    fileprivate var maxTopConstant: CGFloat = 0.0
+    fileprivate var beginConstant: CGFloat = 0.0
+    
+    fileprivate var slideyPosition = Position.Top {
+        didSet {
+            
+            switch slideyPosition {
+            case .Bottom:
+                slideableViewController?.didSnapToBottom()
+                backViewController?.isUserInteractionEnabled = true
+                
+            case .Top:
+                panGestureRecognizingState = .Inactive
+                
+                slideableViewController?.didSnapToTop()
+                backViewController?.isUserInteractionEnabled = false
+            }
+        }
+    }
+    
+    fileprivate enum Position {
+        case Bottom
+        case Top
+    }
+    
+    fileprivate enum GestureState {
+        case Active
+        case Inactive
+    }
+}
+
+// MARK: Interface Builder Actions
+extension SlideyController {
     
     @IBAction func gestureRecognized(_ sender: UIPanGestureRecognizer)
     {
-        if panGestureRecognizingState == .Inactive && slideableViewController.overScrolling == true  {
+        if panGestureRecognizingState == .Inactive && slideableViewController?.overScrolling == true  {
             panGestureRecognizingState = .Active
         }
         
@@ -81,17 +120,31 @@ class SlideyController: UIViewController, UIGestureRecognizerDelegate {
         
         adjustConstraints(sender, translation: sender.translation(in: self.view))
     }
-    
-    // MARK: Gesture Recognizer Delegate
+}
+
+// MARK: Gesture Recognizer Delegate
+extension SlideyController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
     {
         return true
     }
+}
+
+// MARK: Private Helpers
+fileprivate extension SlideyController {
     
-    // MARK: Private Helpers
+    func addBackSubview(_ view: UIView)
+    {
+        backView.addEquallyPinnedSubview(view)
+    }
     
-    private func adjustConstraints(_ recognizer: UIGestureRecognizer, translation: CGPoint)
+    func addSlideSubview(_ view: UIView)
+    {
+        slideyView.addEquallyPinnedSubview(view)
+    }
+    
+    func adjustConstraints(_ recognizer: UIGestureRecognizer, translation: CGPoint)
     {
         guard let tableViewController = slideableViewController as? UITableViewController else { return }
         
@@ -112,7 +165,7 @@ class SlideyController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    private func newTopConstant(_ translationY: CGFloat) -> CGFloat
+    func newTopConstant(_ translationY: CGFloat) -> CGFloat
     {
         let newConstant = slideyTopConstraint.constant + translationY
         if newConstant > maxTopConstant || newConstant > view.frame.height * 0.5 {
@@ -122,40 +175,6 @@ class SlideyController: UIViewController, UIGestureRecognizerDelegate {
         else {
             slideyPosition = .Top
             return minTopConstant
-        }
-    }
-    
-    private var slideableViewController: Slideable!
-    private var mapViewController: UIViewController!
-    
-    private var panGestureRecognizer: UIPanGestureRecognizer!
-    private var panGestureRecognizingState: GestureState = .Active
-    
-    @IBOutlet private weak var slideyTopConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var slideyView: UIView!
-    @IBOutlet private weak var backView: UIView!
-    
-    private var minTopConstant: CGFloat!
-    private var maxTopConstant: CGFloat!
-    private var beginConstant: CGFloat!
-    
-    private var slideyPosition = Position.Top {
-        didSet {
-            
-            switch slideyPosition {
-            case .Bottom:
-                slideableViewController.didSnapToBottom()
-                if let backViewController = mapViewController as? MapViewController {
-                    backViewController.mapView.isUserInteractionEnabled = true
-                }
-            case .Top:
-                panGestureRecognizingState = .Inactive
-                
-                slideableViewController.didSnapToTop()
-                if let backViewController = mapViewController as? MapViewController {
-                    backViewController.mapView.isUserInteractionEnabled = false
-                }
-            }
         }
     }
 }
