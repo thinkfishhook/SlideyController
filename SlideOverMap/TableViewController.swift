@@ -26,11 +26,11 @@ extension TableViewController: FrontSlideable {
     
     func didSnapToBottom()
     {
-        tableView.isScrollEnabled = false
+        tableView.scrollEnabled = false
     }
     
     func didSnapToTop()
     {
-        tableView.isScrollEnabled = true
+        tableView.scrollEnabled = true
     }
 }

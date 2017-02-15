@@ -17,7 +17,7 @@ public class SlideyController: UIViewController {
             guard let viewController = slideableViewController else { return }
             
             addChildViewController(viewController)
-            if isViewLoaded {
+            if isViewLoaded() {
                 addSlideSubview(viewController.view)
             }
         }
@@ -34,7 +34,7 @@ public class SlideyController: UIViewController {
             guard let viewController = backViewController else { return }
             
             addChildViewController(viewController)
-            if isViewLoaded {
+            if isViewLoaded() {
                 addBackSubview(viewController.view)
             }
         }
@@ -60,18 +60,18 @@ public class SlideyController: UIViewController {
         }
     }
     
-    fileprivate var panGestureRecognizingState: GestureState = .Active
+    private var panGestureRecognizingState: GestureState = .Active
     
-    @IBOutlet fileprivate weak var panGestureRecognizer: UIPanGestureRecognizer!
-    @IBOutlet fileprivate weak var slideyTopConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var slideyView: UIView!
-    @IBOutlet fileprivate weak var backView: UIView!
+    @IBOutlet private weak var panGestureRecognizer: UIPanGestureRecognizer!
+    @IBOutlet private weak var slideyTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var slideyView: UIView!
+    @IBOutlet private weak var backView: UIView!
     
-    fileprivate var minTopConstant: CGFloat = 0.0
-    fileprivate var maxTopConstant: CGFloat = 0.0
-    fileprivate var beginConstant: CGFloat = 0.0
+    private var minTopConstant: CGFloat = 0.0
+    private var maxTopConstant: CGFloat = 0.0
+    private var beginConstant: CGFloat = 0.0
     
-    fileprivate var slideyPosition = Position.Top {
+    private var slideyPosition = Position.Top {
         didSet {
             
             switch slideyPosition {
@@ -88,12 +88,12 @@ public class SlideyController: UIViewController {
         }
     }
     
-    fileprivate enum Position {
+    private enum Position {
         case Bottom
         case Top
     }
     
-    fileprivate enum GestureState {
+    private enum GestureState {
         case Active
         case Inactive
     }
@@ -110,7 +110,7 @@ extension SlideyController {
         
         guard panGestureRecognizingState == .Active else { return }
         
-        adjustConstraints(sender, translation: sender.translation(in: self.view))
+        adjustConstraints(sender, translation: sender.translationInView(self.view))
     }
 }
 
@@ -124,7 +124,7 @@ extension SlideyController: UIGestureRecognizerDelegate {
 }
 
 // MARK: Private Helpers
-fileprivate extension SlideyController {
+private extension SlideyController {
     
     func addBackSubview(_ view: UIView)
     {
@@ -141,16 +141,16 @@ fileprivate extension SlideyController {
         guard let tableViewController = slideableViewController as? UITableViewController else { return }
         
         switch recognizer.state {
-        case .changed:
+        case .Changed:
             slideyTopConstraint.constant = beginConstant + translation.y
-            tableViewController.tableView.isScrollEnabled = false
-        case .ended:
+            tableViewController.tableView.scrollEnabled = false
+        case .Ended:
             view.layoutIfNeeded()
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animateWithDuration(0.5, animations: {
                 self.slideyTopConstraint.constant = self.newTopConstant(translation.y)
                 self.view.layoutIfNeeded()
             })
-            tableViewController.tableView.isScrollEnabled = true
+            tableViewController.tableView.scrollEnabled = true
             beginConstant = slideyTopConstraint.constant
         default:
             break

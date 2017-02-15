@@ -16,11 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootViewController = self.window?.rootViewController as! SlideyController
         let storyboard = rootViewController.storyboard
         
-        let mapViewController = storyboard?.instantiateViewController(withIdentifier: "Map View Controller") as! MapViewController
-        let tableViewController = storyboard?.instantiateViewController(withIdentifier: "Table View Controller") as! TableViewController
+        let mapViewController = storyboard?.instantiateViewControllerWithIdentifier("Map View Controller") as! MapViewController
+        let tableViewController = storyboard?.instantiateViewControllerWithIdentifier("Table View Controller") as! TableViewController
         
-        rootViewController.setBack(mapViewController)
-        rootViewController.setFront(tableViewController)
+        rootViewController.backViewController = mapViewController
+        rootViewController.slideableViewController = tableViewController
         
         return true
     }

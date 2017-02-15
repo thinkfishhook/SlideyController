@@ -12,9 +12,9 @@ extension UIView {
         
         subview.translatesAutoresizingMaskIntoConstraints = false
         
-        leadingAnchor.constraint(equalTo: subview.leadingAnchor).isActive = true
-        trailingAnchor.constraint(equalTo: subview.trailingAnchor).isActive = true
-        topAnchor.constraint(equalTo: subview.topAnchor).isActive = true
-        bottomAnchor.constraint(equalTo: subview.bottomAnchor).isActive = true
+        leadingAnchor.constraintEqualToAnchor(subview.leadingAnchor).active = true
+        trailingAnchor.constraintEqualToAnchor(subview.trailingAnchor).active = true
+        topAnchor.constraintEqualToAnchor(subview.topAnchor).active = true
+        bottomAnchor.constraintEqualToAnchor(subview.bottomAnchor).active = true
     }
 }

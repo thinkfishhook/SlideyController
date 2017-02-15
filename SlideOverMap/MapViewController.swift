@@ -16,10 +16,10 @@ extension MapViewController: BackSlideable {
     
     var isUserInteractionEnabled: Bool {
         get {
-            return mapView.isUserInteractionEnabled
+            return mapView.userInteractionEnabled
         }
         set {
-            mapView.isUserInteractionEnabled = newValue
+            mapView.userInteractionEnabled = newValue
         }
     }
 }
