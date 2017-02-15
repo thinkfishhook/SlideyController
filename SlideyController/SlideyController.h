@@ -1,8 +1,4 @@
 //
-//  SlideyController.h
-//  SlideyController
-//
-//  Created by Evan DeLaney on 2/15/17.
 //  Copyright © 2017 Fish Hook LLC. All rights reserved.
 //
 
