@@ -15,6 +15,7 @@
 		24180CFC1E48FF63000A3DCF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CFB1E48FF63000A3DCF /* MapViewController.swift */; };
 		24180CFE1E48FFB1000A3DCF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CFD1E48FFB1000A3DCF /* TableViewController.swift */; };
 		2ACFCB9D1E54F35600F23F4F /* UIView+SlideyAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCB9C1E54F35600F23F4F /* UIView+SlideyAdditions.swift */; };
+		2ACFCBA71E54FD8300F23F4F /* SlideyController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2ACFCBA51E54FD8300F23F4F /* SlideyController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +29,20 @@
 		24180CFB1E48FF63000A3DCF /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		24180CFD1E48FFB1000A3DCF /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		2ACFCB9C1E54F35600F23F4F /* UIView+SlideyAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SlideyAdditions.swift"; sourceTree = "<group>"; };
+		2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SlideyController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2ACFCBA51E54FD8300F23F4F /* SlideyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideyController.h; sourceTree = "<group>"; };
+		2ACFCBA61E54FD8300F23F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		24180CE31E48FEBF000A3DCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2ACFCB9F1E54FD8300F23F4F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -45,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				24180CE81E48FEBF000A3DCF /* SlideOverMap */,
+				2ACFCBA41E54FD8300F23F4F /* SlideyController */,
 				24180CE71E48FEBF000A3DCF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				24180CE61E48FEBF000A3DCF /* SlideOverMap.app */,
+				2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,7 +86,27 @@
 			path = SlideOverMap;
 			sourceTree = "<group>";
 		};
+		2ACFCBA41E54FD8300F23F4F /* SlideyController */ = {
+			isa = PBXGroup;
+			children = (
+				2ACFCBA51E54FD8300F23F4F /* SlideyController.h */,
+				2ACFCBA61E54FD8300F23F4F /* Info.plist */,
+			);
+			path = SlideyController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2ACFCBA01E54FD8300F23F4F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ACFCBA71E54FD8300F23F4F /* SlideyController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		24180CE51E48FEBF000A3DCF /* SlideOverMap */ = {
@@ -93,6 +126,24 @@
 			productReference = 24180CE61E48FEBF000A3DCF /* SlideOverMap.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2ACFCBA21E54FD8300F23F4F /* SlideyController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2ACFCBA81E54FD8300F23F4F /* Build configuration list for PBXNativeTarget "SlideyController" */;
+			buildPhases = (
+				2ACFCB9E1E54FD8300F23F4F /* Sources */,
+				2ACFCB9F1E54FD8300F23F4F /* Frameworks */,
+				2ACFCBA01E54FD8300F23F4F /* Headers */,
+				2ACFCBA11E54FD8300F23F4F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SlideyController;
+			productName = SlideyController;
+			productReference = 2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -105,6 +156,11 @@
 				TargetAttributes = {
 					24180CE51E48FEBF000A3DCF = {
 						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					2ACFCBA21E54FD8300F23F4F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 2JG9QW76WV;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -123,6 +179,7 @@
 			projectRoot = "";
 			targets = (
 				24180CE51E48FEBF000A3DCF /* SlideOverMap */,
+				2ACFCBA21E54FD8300F23F4F /* SlideyController */,
 			);
 		};
 /* End PBXProject section */
@@ -138,6 +195,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2ACFCBA11E54FD8300F23F4F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -150,6 +214,13 @@
 				24180CFE1E48FFB1000A3DCF /* TableViewController.swift in Sources */,
 				24180CFC1E48FF63000A3DCF /* MapViewController.swift in Sources */,
 				24180CEA1E48FEBF000A3DCF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2ACFCB9E1E54FD8300F23F4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +363,50 @@
 			};
 			name = Release;
 		};
+		2ACFCBA91E54FD8300F23F4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2JG9QW76WV;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SlideyController/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fishhook.SlideyController;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2ACFCBAA1E54FD8300F23F4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2JG9QW76WV;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SlideyController/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fishhook.SlideyController;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -312,6 +427,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		2ACFCBA81E54FD8300F23F4F /* Build configuration list for PBXNativeTarget "SlideyController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2ACFCBA91E54FD8300F23F4F /* Debug */,
+				2ACFCBAA1E54FD8300F23F4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
