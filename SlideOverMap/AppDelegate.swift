@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SlideyController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

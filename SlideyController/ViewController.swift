@@ -4,7 +4,7 @@
 
 import UIKit
 
-protocol Slideable: class, UIViewControllerProtocol {
+public protocol Slideable: class, UIViewControllerProtocol {
     
     var overScrolling: Bool { get set }
     
@@ -12,21 +12,21 @@ protocol Slideable: class, UIViewControllerProtocol {
     func didSnapToTop()
 }
 
-protocol SlideyBackType: class, UIViewControllerProtocol {
+public protocol SlideyBackType: class, UIViewControllerProtocol {
     
     var isUserInteractionEnabled: Bool { get set }
 }
 
-protocol UIViewControllerProtocol {
+public protocol UIViewControllerProtocol {
     
     var view: UIView! { get }
 }
 
 extension UIViewController: UIViewControllerProtocol { }
 
-class SlideyController: UIViewController {
+public class SlideyController: UIViewController {
     
-    func setBack(_ back: SlideyBackType)
+    public func setBack(_ back: SlideyBackType)
     {
         backViewController = back
         if let viewController = back as? UIViewController {
@@ -34,7 +34,7 @@ class SlideyController: UIViewController {
         }
     }
     
-    func setFront(_ slidey: Slideable)
+    public func setFront(_ slidey: Slideable)
     {
         slideableViewController = slidey
         if let viewController = slidey as? UIViewController {
@@ -44,7 +44,7 @@ class SlideyController: UIViewController {
     
     // MARK: View Life Cycle
     
-    override func viewDidLoad()
+    override public func viewDidLoad()
     {
         super.viewDidLoad()
         
@@ -125,7 +125,7 @@ extension SlideyController {
 // MARK: Gesture Recognizer Delegate
 extension SlideyController: UIGestureRecognizerDelegate {
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
     {
         return true
     }

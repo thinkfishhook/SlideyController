@@ -12,7 +12,7 @@
         <!--Slidey Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SlideyController" customModule="SlideOverMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SlideyController" customModule="SlideyController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zxP-nu-czO"/>
                         <viewControllerLayoutGuide type="bottom" id="Myp-YA-Jq1"/>

@@ -4,6 +4,7 @@
 
 import UIKit
 import MapKit
+import SlideyController
 
 class MapViewController: UIViewController {
     

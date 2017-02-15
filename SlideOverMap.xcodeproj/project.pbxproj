@@ -8,30 +8,41 @@
 
 /* Begin PBXBuildFile section */
 		24180CEA1E48FEBF000A3DCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CE91E48FEBF000A3DCF /* AppDelegate.swift */; };
-		24180CEC1E48FEBF000A3DCF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CEB1E48FEBF000A3DCF /* ViewController.swift */; };
 		24180CEF1E48FEBF000A3DCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24180CED1E48FEBF000A3DCF /* Main.storyboard */; };
 		24180CF11E48FEBF000A3DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24180CF01E48FEBF000A3DCF /* Assets.xcassets */; };
 		24180CF41E48FEBF000A3DCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24180CF21E48FEBF000A3DCF /* LaunchScreen.storyboard */; };
 		24180CFC1E48FF63000A3DCF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CFB1E48FF63000A3DCF /* MapViewController.swift */; };
 		24180CFE1E48FFB1000A3DCF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CFD1E48FFB1000A3DCF /* TableViewController.swift */; };
-		2ACFCB9D1E54F35600F23F4F /* UIView+SlideyAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCB9C1E54F35600F23F4F /* UIView+SlideyAdditions.swift */; };
 		2ACFCBA71E54FD8300F23F4F /* SlideyController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2ACFCBA51E54FD8300F23F4F /* SlideyController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2ACFCBAD1E54FE1300F23F4F /* UIView+SlideyAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBAB1E54FE1300F23F4F /* UIView+SlideyAdditions.swift */; };
+		2ACFCBAE1E54FE1300F23F4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBAC1E54FE1300F23F4F /* ViewController.swift */; };
+		2ACFCBAF1E54FE5900F23F4F /* SlideyController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2ACFCBB01E54FE7900F23F4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24180CDE1E48FEBF000A3DCF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2ACFCBA21E54FD8300F23F4F;
+			remoteInfo = SlideyController;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		24180CE61E48FEBF000A3DCF /* SlideOverMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideOverMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24180CE91E48FEBF000A3DCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		24180CEB1E48FEBF000A3DCF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		24180CEE1E48FEBF000A3DCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		24180CF01E48FEBF000A3DCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24180CF31E48FEBF000A3DCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24180CF51E48FEBF000A3DCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24180CFB1E48FF63000A3DCF /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		24180CFD1E48FFB1000A3DCF /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		2ACFCB9C1E54F35600F23F4F /* UIView+SlideyAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SlideyAdditions.swift"; sourceTree = "<group>"; };
 		2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SlideyController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ACFCBA51E54FD8300F23F4F /* SlideyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideyController.h; sourceTree = "<group>"; };
 		2ACFCBA61E54FD8300F23F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2ACFCBAB1E54FE1300F23F4F /* UIView+SlideyAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SlideyAdditions.swift"; sourceTree = "<group>"; };
+		2ACFCBAC1E54FE1300F23F4F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ACFCBAF1E54FE5900F23F4F /* SlideyController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,14 +86,12 @@
 			isa = PBXGroup;
 			children = (
 				24180CE91E48FEBF000A3DCF /* AppDelegate.swift */,
-				24180CEB1E48FEBF000A3DCF /* ViewController.swift */,
 				24180CED1E48FEBF000A3DCF /* Main.storyboard */,
 				24180CFD1E48FFB1000A3DCF /* TableViewController.swift */,
 				24180CFB1E48FF63000A3DCF /* MapViewController.swift */,
 				24180CF01E48FEBF000A3DCF /* Assets.xcassets */,
 				24180CF21E48FEBF000A3DCF /* LaunchScreen.storyboard */,
 				24180CF51E48FEBF000A3DCF /* Info.plist */,
-				2ACFCB9C1E54F35600F23F4F /* UIView+SlideyAdditions.swift */,
 			);
 			path = SlideOverMap;
 			sourceTree = "<group>";
@@ -89,6 +99,8 @@
 		2ACFCBA41E54FD8300F23F4F /* SlideyController */ = {
 			isa = PBXGroup;
 			children = (
+				2ACFCBAB1E54FE1300F23F4F /* UIView+SlideyAdditions.swift */,
+				2ACFCBAC1E54FE1300F23F4F /* ViewController.swift */,
 				2ACFCBA51E54FD8300F23F4F /* SlideyController.h */,
 				2ACFCBA61E54FD8300F23F4F /* Info.plist */,
 			);
@@ -120,6 +132,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2ACFCBB11E54FE7900F23F4F /* PBXTargetDependency */,
 			);
 			name = SlideOverMap;
 			productName = SlideOverMap;
@@ -161,6 +174,7 @@
 					2ACFCBA21E54FD8300F23F4F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2JG9QW76WV;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -209,8 +223,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ACFCB9D1E54F35600F23F4F /* UIView+SlideyAdditions.swift in Sources */,
-				24180CEC1E48FEBF000A3DCF /* ViewController.swift in Sources */,
 				24180CFE1E48FFB1000A3DCF /* TableViewController.swift in Sources */,
 				24180CFC1E48FF63000A3DCF /* MapViewController.swift in Sources */,
 				24180CEA1E48FEBF000A3DCF /* AppDelegate.swift in Sources */,
@@ -221,10 +233,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ACFCBAE1E54FE1300F23F4F /* ViewController.swift in Sources */,
+				2ACFCBAD1E54FE1300F23F4F /* UIView+SlideyAdditions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2ACFCBB11E54FE7900F23F4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2ACFCBA21E54FD8300F23F4F /* SlideyController */;
+			targetProxy = 2ACFCBB01E54FE7900F23F4F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		24180CED1E48FEBF000A3DCF /* Main.storyboard */ = {
@@ -366,6 +388,7 @@
 		2ACFCBA91E54FD8300F23F4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -379,6 +402,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fishhook.SlideyController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -388,6 +412,7 @@
 		2ACFCBAA1E54FD8300F23F4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

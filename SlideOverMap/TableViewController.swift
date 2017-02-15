@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SlideyController
 
 class TableViewController: UITableViewController {
     
