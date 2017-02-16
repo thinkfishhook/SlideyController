@@ -7,13 +7,12 @@ import SlideyController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        let rootViewController = self.window?.rootViewController as! SlideyController
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool
+    {
+        let rootViewController = window?.rootViewController as! SlideyController
         let storyboard = rootViewController.storyboard
         
         let mapViewController = storyboard?.instantiateViewControllerWithIdentifier("Map View Controller") as! MapViewController

@@ -110,14 +110,14 @@ extension SlideyController {
         
         guard panGestureRecognizingState == .Active else { return }
         
-        adjustConstraints(sender, translation: sender.translationInView(self.view))
+        adjustConstraints(sender.state, translation: sender.translationInView(self.view))
     }
 }
 
 // MARK: Gesture Recognizer Delegate
 extension SlideyController: UIGestureRecognizerDelegate {
     
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
+    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool
     {
         return true
     }
@@ -136,17 +136,17 @@ private extension SlideyController {
         slideyView.addEquallyPinnedSubview(view)
     }
     
-    func adjustConstraints(_ recognizer: UIGestureRecognizer, translation: CGPoint)
+    func adjustConstraints(_ state: UIGestureRecognizerState, translation: CGPoint)
     {
         guard let tableViewController = slideableViewController as? UITableViewController else { return }
         
-        switch recognizer.state {
+        switch state {
         case .Changed:
             slideyTopConstraint.constant = beginConstant + translation.y
             tableViewController.tableView.scrollEnabled = false
         case .Ended:
             view.layoutIfNeeded()
-            UIView.animateWithDuration(0.5, animations: {
+            UIView.animateWithDuration(0.333, animations: {
                 self.slideyTopConstraint.constant = self.newTopConstant(translation.y)
                 self.view.layoutIfNeeded()
             })
