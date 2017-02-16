@@ -47,7 +47,7 @@ public class SlideyController: UIViewController {
         super.viewDidLoad()
         
         minTopConstant = view.frame.height * 0.2
-        maxTopConstant = view.frame.height * 0.8
+        maxTopConstant = view.frame.height * 0.6
         slideyTopConstraint.constant = maxTopConstant
         beginConstant = slideyTopConstraint.constant
         
@@ -56,7 +56,7 @@ public class SlideyController: UIViewController {
         }
         
         if let view = slideableViewController?.view {
-            addBackSubview(view)
+            addSlideSubview(view)
         }
     }
     
