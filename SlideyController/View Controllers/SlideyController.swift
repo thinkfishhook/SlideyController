@@ -165,6 +165,11 @@ private extension SlideyController {
     
     func addSlideSubview(_ view: UIView)
     {
+        slideyView.layer.masksToBounds = false
+        slideyView.layer.shadowRadius = 5
+        slideyView.layer.shadowColor = UIColor.blackColor().CGColor
+        slideyView.layer.shadowOpacity = 0.5
+        
         slideyView.addEquallyPinnedSubview(view)
     }
     
