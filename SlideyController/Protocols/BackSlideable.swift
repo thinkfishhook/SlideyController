@@ -5,4 +5,6 @@
 @objc public protocol BackSlideable: class, UIViewControllerProtocol {
     
     var isUserInteractionEnabled: Bool { get set }
+    
+    optional func bottomOffsetDidChange(offset: CGFloat)
 }
