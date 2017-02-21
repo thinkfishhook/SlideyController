@@ -9,7 +9,6 @@ import SlideyController
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
-    
 }
 
 extension MapViewController: BackSlideable {
@@ -21,5 +20,11 @@ extension MapViewController: BackSlideable {
         set {
             mapView.userInteractionEnabled = newValue
         }
+    }
+    
+    func bottomOffsetDidChange(offset: CGFloat)
+    {
+        let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: offset, right: 0)
+        mapView.setVisibleMapRect(mapView.visibleMapRect, edgePadding: edgeInsets, animated: false)
     }
 }

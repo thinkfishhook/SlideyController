@@ -65,6 +65,7 @@ public class SlideyController: UIViewController {
         
         setConstants(view.frame.size)
         
+        backViewController?.bottomOffsetDidChange?(minTopConstant)
         slideyTopConstraint.constant = maxTopConstant
         beginConstant = slideyTopConstraint.constant
         relativeAlpha = 1 - (slideyTopConstraint.constant / view.frame.height)
@@ -73,6 +74,8 @@ public class SlideyController: UIViewController {
     public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
     {
         setConstants(size)
+        
+        backViewController?.bottomOffsetDidChange?(minTopConstant)
         
         switch slideyPosition {
         case .Top:
