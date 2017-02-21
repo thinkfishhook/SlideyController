@@ -53,6 +53,10 @@ public class SlideyController: UIViewController {
         if let view = slideableViewController?.view {
             addSlideSubview(view)
         }
+        
+        dimmingView.alpha = 0
+        dimmingView.backgroundColor = UIColor.blackColor()
+        backView.addEquallyPinnedSubview(dimmingView)
     }
     
     public override func viewDidAppear(animated: Bool)
@@ -63,6 +67,7 @@ public class SlideyController: UIViewController {
         
         slideyTopConstraint.constant = maxTopConstant
         beginConstant = slideyTopConstraint.constant
+        relativeAlpha = 1 - (slideyTopConstraint.constant / view.frame.height)
     }
     
     public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
@@ -86,10 +91,12 @@ public class SlideyController: UIViewController {
     @IBOutlet private weak var slideyView: UIView!
     @IBOutlet private weak var backView: UIView!
     
+    private var dimmingView = UIView()
     private var positiveHeightRatio: Bool = true
     private var minTopConstant: CGFloat = 0.0
     private var maxTopConstant: CGFloat = 0.0
     private var beginConstant: CGFloat = 0.0
+    private var relativeAlpha: CGFloat = 0.0
     
     private var slideyPosition = Position.Top {
         didSet {
@@ -98,12 +105,14 @@ public class SlideyController: UIViewController {
             case .Bottom:
                 slideableViewController?.didSnapToBottom()
                 backViewController?.isUserInteractionEnabled = true
+                dimmingView.alpha = 0
                 
             case .Top:
                 panGestureRecognizingState = .Inactive
                 
                 slideableViewController?.didSnapToTop()
                 backViewController?.isUserInteractionEnabled = false
+                dimmingView.alpha = 0.5
             }
         }
     }
@@ -164,6 +173,18 @@ private extension SlideyController {
         case .Changed:
             slideyTopConstraint.constant = beginConstant + translation.y
             tableViewController.tableView.scrollEnabled = false
+            
+            let computedAlpha = ((1 - (slideyTopConstraint.constant / view.frame.height)) - relativeAlpha)
+            if computedAlpha >= 0.5 {
+                dimmingView.alpha = 0.5
+            }
+            else if computedAlpha <= 0 {
+                dimmingView.alpha = 0
+            }
+            else {
+                dimmingView.alpha = computedAlpha
+            }
+            
         case .Ended:
             view.layoutIfNeeded()
             UIView.animateWithDuration(0.333, animations: {
