@@ -41,15 +41,10 @@ public class SlideyController: UIViewController {
     }
     
     // MARK: View Life Cycle
-     
+    
     override public func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        minTopConstant = view.frame.height * 0.2
-        maxTopConstant = view.frame.height * 0.6
-        slideyTopConstraint.constant = maxTopConstant
-        beginConstant = slideyTopConstraint.constant
         
         if let view = backViewController?.view {
             addBackSubview(view)
@@ -60,6 +55,30 @@ public class SlideyController: UIViewController {
         }
     }
     
+    public override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        
+        setConstants(view.frame.size)
+        
+        slideyTopConstraint.constant = maxTopConstant
+        beginConstant = slideyTopConstraint.constant
+    }
+    
+    public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
+    {
+        setConstants(size)
+        
+        switch slideyPosition {
+        case .Top:
+            slideyTopConstraint.constant = minTopConstant
+            beginConstant = minTopConstant
+        case .Bottom:
+            slideyTopConstraint.constant = maxTopConstant
+            beginConstant = maxTopConstant
+        }
+    }
+    
     private var panGestureRecognizingState: GestureState = .Active
     
     @IBOutlet private weak var panGestureRecognizer: UIPanGestureRecognizer!
@@ -67,6 +86,7 @@ public class SlideyController: UIViewController {
     @IBOutlet private weak var slideyView: UIView!
     @IBOutlet private weak var backView: UIView!
     
+    private var positiveHeightRatio: Bool = true
     private var minTopConstant: CGFloat = 0.0
     private var maxTopConstant: CGFloat = 0.0
     private var beginConstant: CGFloat = 0.0
@@ -168,5 +188,12 @@ private extension SlideyController {
             slideyPosition = .Top
             return minTopConstant
         }
+    }
+    
+    func setConstants(size: CGSize)
+    {
+        positiveHeightRatio = size.height > size.width ? true : false
+        minTopConstant = positiveHeightRatio ? size.height * 0.2 : size.height * 0.1
+        maxTopConstant = positiveHeightRatio ? size.height * 0.6 : size.height * 0.55
     }
 }
