@@ -179,28 +179,32 @@ private extension SlideyController {
         
         switch state {
         case .Changed:
-            slideyTopConstraint.constant = beginConstant + translation.y
             tableViewController.tableView.scrollEnabled = false
             
-            let computedAlpha = ((1 - (slideyTopConstraint.constant / view.frame.height)) - relativeAlpha)
-            if computedAlpha >= 0.5 {
-                dimmingView.alpha = 0.5
+            if beginConstant + translation.y > maxTopConstant {
+                animateSnapToNewConstant(tableViewController, translation: translation)
             }
-            else if computedAlpha <= 0 {
-                dimmingView.alpha = 0
+            else if beginConstant + translation.y < minTopConstant {
+                animateSnapToNewConstant(tableViewController, translation: translation)
             }
             else {
-                dimmingView.alpha = computedAlpha
+                slideyTopConstraint.constant = beginConstant + translation.y
+                
+                let computedAlpha = ((1 - (slideyTopConstraint.constant / view.frame.height)) - relativeAlpha)
+                if computedAlpha >= 0.5 {
+                    dimmingView.alpha = 0.5
+                }
+                else if computedAlpha <= 0 {
+                    dimmingView.alpha = 0
+                }
+                else {
+                    dimmingView.alpha = computedAlpha
+                }
             }
             
         case .Ended:
-            view.layoutIfNeeded()
-            UIView.animateWithDuration(0.333, animations: {
-                self.slideyTopConstraint.constant = self.newTopConstant(translation.y)
-                self.view.layoutIfNeeded()
-            })
-            tableViewController.tableView.scrollEnabled = true
-            beginConstant = slideyTopConstraint.constant
+            animateSnapToNewConstant(tableViewController, translation: translation)
+            
         default:
             break
         }
@@ -224,5 +228,16 @@ private extension SlideyController {
         positiveHeightRatio = size.height > size.width ? true : false
         minTopConstant = positiveHeightRatio ? size.height * 0.2 : size.height * 0.1
         maxTopConstant = positiveHeightRatio ? size.height * 0.6 : size.height * 0.55
+    }
+    
+    func animateSnapToNewConstant(tableViewController: UITableViewController, translation: CGPoint)
+    {
+        view.layoutIfNeeded()
+        UIView.animateWithDuration(0.333, delay: 0, options: .CurveEaseInOut, animations: {
+            self.slideyTopConstraint.constant = self.newTopConstant(translation.y)
+            self.view.layoutIfNeeded()
+            }, completion: nil)
+        tableViewController.tableView.scrollEnabled = true
+        beginConstant = slideyTopConstraint.constant
     }
 }
