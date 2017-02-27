@@ -54,6 +54,7 @@ public class SlideyController: UIViewController {
             addSlideSubview(view)
         }
         
+        addDropShadow()
         dimmingView.alpha = 0
         dimmingView.backgroundColor = UIColor.blackColor()
         backView.addEquallyPinnedSubview(dimmingView)
@@ -165,11 +166,6 @@ private extension SlideyController {
     
     func addSlideSubview(_ view: UIView)
     {
-        slideyView.layer.masksToBounds = false
-        slideyView.layer.shadowRadius = 5
-        slideyView.layer.shadowColor = UIColor.blackColor().CGColor
-        slideyView.layer.shadowOpacity = 0.5
-        
         slideyView.addEquallyPinnedSubview(view)
     }
     
@@ -228,6 +224,14 @@ private extension SlideyController {
         positiveHeightRatio = size.height > size.width ? true : false
         minTopConstant = positiveHeightRatio ? size.height * 0.2 : size.height * 0.1
         maxTopConstant = positiveHeightRatio ? size.height * 0.6 : size.height * 0.55
+    }
+    
+    func addDropShadow()
+    {
+        slideyView.layer.masksToBounds = false
+        slideyView.layer.shadowRadius = 5
+        slideyView.layer.shadowColor = UIColor.blackColor().CGColor
+        slideyView.layer.shadowOpacity = 0.5
     }
     
     func animateSnapToNewConstant(tableViewController: UITableViewController, translation: CGPoint)
