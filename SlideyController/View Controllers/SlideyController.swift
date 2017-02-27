@@ -221,7 +221,7 @@ private extension SlideyController {
     
     func setConstants(size: CGSize)
     {
-        positiveHeightRatio = size.height > size.width ? true : false
+        positiveHeightRatio = size.height > size.width
         minTopConstant = positiveHeightRatio ? size.height * 0.2 : size.height * 0.1
         maxTopConstant = positiveHeightRatio ? size.height * 0.6 : size.height * 0.55
     }
