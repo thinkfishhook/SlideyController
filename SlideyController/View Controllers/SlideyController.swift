@@ -171,17 +171,16 @@ private extension SlideyController {
     
     func adjustConstraints(_ state: UIGestureRecognizerState, translation: CGPoint)
     {
-        guard let tableViewController = slideableViewController as? UITableViewController else { return }
+        guard let slideableViewController = slideableViewController else { return }
         
         switch state {
         case .Changed:
-            tableViewController.tableView.scrollEnabled = false
             
             if beginConstant + translation.y > maxTopConstant {
-                animateSnapToNewConstant(tableViewController, translation: translation)
+                animateSnapToNewConstant(slideableViewController, translation: translation)
             }
             else if beginConstant + translation.y < minTopConstant {
-                animateSnapToNewConstant(tableViewController, translation: translation)
+                animateSnapToNewConstant(slideableViewController, translation: translation)
             }
             else {
                 slideyTopConstraint.constant = beginConstant + translation.y
@@ -199,7 +198,7 @@ private extension SlideyController {
             }
             
         case .Ended:
-            animateSnapToNewConstant(tableViewController, translation: translation)
+            animateSnapToNewConstant(slideableViewController, translation: translation)
             
         default:
             break
@@ -234,14 +233,14 @@ private extension SlideyController {
         slideyView.layer.shadowOpacity = 0.5
     }
     
-    func animateSnapToNewConstant(tableViewController: UITableViewController, translation: CGPoint)
+    func animateSnapToNewConstant(viewController: UIViewControllerProtocol, translation: CGPoint)
     {
         view.layoutIfNeeded()
         UIView.animateWithDuration(0.333, delay: 0, options: .CurveEaseInOut, animations: {
             self.slideyTopConstraint.constant = self.newTopConstant(translation.y)
             self.view.layoutIfNeeded()
             }, completion: nil)
-        tableViewController.tableView.scrollEnabled = true
+        
         beginConstant = slideyTopConstraint.constant
     }
 }
