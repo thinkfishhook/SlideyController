@@ -54,7 +54,6 @@ public class SlideyController: UIViewController {
             addSlideSubview(view)
         }
         
-        addDropShadow()
         dimmingView.alpha = 0
         dimmingView.backgroundColor = UIColor.blackColor()
         backView.addEquallyPinnedSubview(dimmingView)
@@ -92,8 +91,12 @@ public class SlideyController: UIViewController {
     
     @IBOutlet private weak var panGestureRecognizer: UIPanGestureRecognizer!
     @IBOutlet private weak var slideyTopConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var slideyView: UIView!
     @IBOutlet private weak var backView: UIView!
+    @IBOutlet private weak var slideyView: UIView! {
+        didSet {
+            slideyView.addDropShadow()
+        }
+    }
     
     private var dimmingView = UIView()
     private var positiveHeightRatio: Bool = true
@@ -225,13 +228,6 @@ private extension SlideyController {
         maxTopConstant = positiveHeightRatio ? size.height * 0.6 : size.height * 0.55
     }
     
-    func addDropShadow()
-    {
-        slideyView.layer.masksToBounds = false
-        slideyView.layer.shadowRadius = 5
-        slideyView.layer.shadowColor = UIColor.blackColor().CGColor
-        slideyView.layer.shadowOpacity = 0.5
-    }
     
     func animateSnapToNewConstant(viewController: UIViewControllerProtocol, translation: CGPoint)
     {
