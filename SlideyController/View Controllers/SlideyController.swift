@@ -101,6 +101,7 @@ public class SlideyController: UIViewController {
     private var maxTopConstant: CGFloat = 0.0
     private var beginConstant: CGFloat = 0.0
     private var relativeAlpha: CGFloat = 0.0
+    private var tableViewScrollOffset: CGFloat = 0.0
     
     private var slideyPosition = Position.Top {
         didSet {
@@ -138,12 +139,13 @@ extension SlideyController {
     @IBAction func gestureRecognized(_ sender: UIPanGestureRecognizer)
     {
         if panGestureRecognizingState == .Inactive && slideableViewController?.overScrolling == true  {
+            tableViewScrollOffset = sender.translationInView(self.view).y
             panGestureRecognizingState = .Active
         }
         
         guard panGestureRecognizingState == .Active else { return }
         
-        adjustConstraints(sender.state, translation: sender.translationInView(self.view))
+        adjustConstraints(sender.state, translation: sender.translationInView(self.view), tableViewScrollOffset: tableViewScrollOffset)
     }
 }
 
@@ -169,7 +171,7 @@ private extension SlideyController {
         slideyView.addEquallyPinnedSubview(view)
     }
     
-    func adjustConstraints(_ state: UIGestureRecognizerState, translation: CGPoint)
+    func adjustConstraints(_ state: UIGestureRecognizerState, translation: CGPoint, tableViewScrollOffset: CGFloat)
     {
         guard let tableViewController = slideableViewController as? UITableViewController else { return }
         
@@ -184,8 +186,7 @@ private extension SlideyController {
                 animateSnapToNewConstant(tableViewController, translation: translation)
             }
             else {
-                slideyTopConstraint.constant = beginConstant + translation.y
-                
+                slideyTopConstraint.constant = beginConstant + (translation.y - tableViewScrollOffset)
                 let computedAlpha = ((1 - (slideyTopConstraint.constant / view.frame.height)) - relativeAlpha)
                 if computedAlpha >= 0.5 {
                     dimmingView.alpha = 0.5
@@ -240,7 +241,7 @@ private extension SlideyController {
         UIView.animateWithDuration(0.333, delay: 0, options: .CurveEaseInOut, animations: {
             self.slideyTopConstraint.constant = self.newTopConstant(translation.y)
             self.view.layoutIfNeeded()
-            }, completion: nil)
+        }, completion: nil)
         tableViewController.tableView.scrollEnabled = true
         beginConstant = slideyTopConstraint.constant
     }
