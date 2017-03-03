@@ -13,8 +13,9 @@
 		24180CF41E48FEBF000A3DCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24180CF21E48FEBF000A3DCF /* LaunchScreen.storyboard */; };
 		24180CFC1E48FF63000A3DCF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CFB1E48FF63000A3DCF /* MapViewController.swift */; };
 		24180CFE1E48FFB1000A3DCF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CFD1E48FFB1000A3DCF /* TableViewController.swift */; };
+		2AA351DC1E68F2B300B491A9 /* SlideyController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */; };
+		2AA351DD1E68F2B300B491A9 /* SlideyController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2ACFCBA71E54FD8300F23F4F /* SlideyController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2ACFCBA51E54FD8300F23F4F /* SlideyController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2ACFCBAF1E54FE5900F23F4F /* SlideyController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */; };
 		2ACFCBB81E54FFA500F23F4F /* SlideyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBB71E54FFA500F23F4F /* SlideyController.swift */; };
 		2ACFCBBA1E54FFAC00F23F4F /* UIView+SlideyAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBB91E54FFAC00F23F4F /* UIView+SlideyAdditions.swift */; };
 		2ACFCBBC1E55003F00F23F4F /* BackSlideable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBBB1E55003F00F23F4F /* BackSlideable.swift */; };
@@ -24,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2ACFCBB01E54FE7900F23F4F /* PBXContainerItemProxy */ = {
+		2AA351DE1E68F2B300B491A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 24180CDE1E48FEBF000A3DCF /* Project object */;
 			proxyType = 1;
@@ -32,6 +33,20 @@
 			remoteInfo = SlideyController;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2AA351E01E68F2B300B491A9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2AA351DD1E68F2B300B491A9 /* SlideyController.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		24180CE61E48FEBF000A3DCF /* SlideOverMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideOverMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ACFCBAF1E54FE5900F23F4F /* SlideyController.framework in Frameworks */,
+				2AA351DC1E68F2B300B491A9 /* SlideyController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,11 +203,12 @@
 				24180CE21E48FEBF000A3DCF /* Sources */,
 				24180CE31E48FEBF000A3DCF /* Frameworks */,
 				24180CE41E48FEBF000A3DCF /* Resources */,
+				2AA351E01E68F2B300B491A9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2ACFCBB11E54FE7900F23F4F /* PBXTargetDependency */,
+				2AA351DF1E68F2B300B491A9 /* PBXTargetDependency */,
 			);
 			name = SlideOverMap;
 			productName = SlideOverMap;
@@ -229,6 +245,7 @@
 				TargetAttributes = {
 					24180CE51E48FEBF000A3DCF = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 2JG9QW76WV;
 						ProvisioningStyle = Automatic;
 					};
 					2ACFCBA21E54FD8300F23F4F = {
@@ -305,10 +322,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2ACFCBB11E54FE7900F23F4F /* PBXTargetDependency */ = {
+		2AA351DF1E68F2B300B491A9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2ACFCBA21E54FD8300F23F4F /* SlideyController */;
-			targetProxy = 2ACFCBB01E54FE7900F23F4F /* PBXContainerItemProxy */;
+			targetProxy = 2AA351DE1E68F2B300B491A9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -428,10 +445,12 @@
 		24180CF91E48FEBF000A3DCF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2JG9QW76WV;
 				INFOPLIST_FILE = SlideOverMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = FishHook.SlideOverMap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fishhook.slideover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 2.3;
 			};
@@ -440,10 +459,12 @@
 		24180CFA1E48FEBF000A3DCF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2JG9QW76WV;
 				INFOPLIST_FILE = SlideOverMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = FishHook.SlideOverMap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fishhook.slideover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 2.3;
 			};

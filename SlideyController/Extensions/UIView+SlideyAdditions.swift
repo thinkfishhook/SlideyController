@@ -17,4 +17,13 @@ extension UIView {
         topAnchor.constraintEqualToAnchor(subview.topAnchor).active = true
         bottomAnchor.constraintEqualToAnchor(subview.bottomAnchor).active = true
     }
+    
+    func addDropShadow(radius: CGFloat = 5, opacity: Float = 0.2)
+    {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.blackColor().CGColor
+        
+        layer.shadowRadius = radius
+        layer.shadowOpacity = opacity
+    }
 }
