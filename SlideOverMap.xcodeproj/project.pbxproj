@@ -13,6 +13,7 @@
 		24180CF41E48FEBF000A3DCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24180CF21E48FEBF000A3DCF /* LaunchScreen.storyboard */; };
 		24180CFC1E48FF63000A3DCF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CFB1E48FF63000A3DCF /* MapViewController.swift */; };
 		24180CFE1E48FFB1000A3DCF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24180CFD1E48FFB1000A3DCF /* TableViewController.swift */; };
+		24FAB3E91E69E1DF00F59629 /* CGPoint+SlideyAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FAB3E81E69E1DF00F59629 /* CGPoint+SlideyAdditions.swift */; };
 		2AA351DC1E68F2B300B491A9 /* SlideyController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */; };
 		2AA351DD1E68F2B300B491A9 /* SlideyController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2ACFCBA71E54FD8300F23F4F /* SlideyController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2ACFCBA51E54FD8300F23F4F /* SlideyController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -57,6 +58,7 @@
 		24180CF51E48FEBF000A3DCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24180CFB1E48FF63000A3DCF /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		24180CFD1E48FFB1000A3DCF /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		24FAB3E81E69E1DF00F59629 /* CGPoint+SlideyAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+SlideyAdditions.swift"; sourceTree = "<group>"; };
 		2ACFCBA31E54FD8300F23F4F /* SlideyController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SlideyController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ACFCBA51E54FD8300F23F4F /* SlideyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideyController.h; sourceTree = "<group>"; };
 		2ACFCBA61E54FD8300F23F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				2ACFCBB91E54FFAC00F23F4F /* UIView+SlideyAdditions.swift */,
 				2ACFCBC21E55037900F23F4F /* UIViewController+SlideyAdditions.swift */,
+				24FAB3E81E69E1DF00F59629 /* CGPoint+SlideyAdditions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				2ACFCBC31E55037900F23F4F /* UIViewController+SlideyAdditions.swift in Sources */,
 				2ACFCBBF1E55009200F23F4F /* UIViewControllerProtocol.swift in Sources */,
 				2ACFCBC11E5500C100F23F4F /* FrontSlideable.swift in Sources */,
+				24FAB3E91E69E1DF00F59629 /* CGPoint+SlideyAdditions.swift in Sources */,
 				2ACFCBBC1E55003F00F23F4F /* BackSlideable.swift in Sources */,
 				2ACFCBBA1E54FFAC00F23F4F /* UIView+SlideyAdditions.swift in Sources */,
 				2ACFCBB81E54FFA500F23F4F /* SlideyController.swift in Sources */,
