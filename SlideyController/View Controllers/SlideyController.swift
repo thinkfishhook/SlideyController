@@ -100,6 +100,7 @@ public class SlideyController: UIViewController {
     private var minTopConstraintConstant: CGFloat = 0.0
     private var maxTopConstraintConstant: CGFloat = 0.0
     private var initialTopConstraintConstant: CGFloat = 0.0
+    private var initialTranslation = CGPointZero
     
     private var slideyPosition = Position.Top {
         didSet {
@@ -134,22 +135,25 @@ extension SlideyController {
     
     @IBAction func gestureRecognized(_ sender: UIPanGestureRecognizer)
     {
-        if panGestureRecognizingState == .Inactive && slideableViewController?.overScrolling == true  {
-            panGestureRecognizingState = .Active
-        }
-        
         let translation = sender.translationInView(view)
         let velocity = sender.velocityInView(view)
+        
+        if panGestureRecognizingState == .Inactive && slideableViewController?.overScrolling == true  {
+            panGestureRecognizingState = .Active
+            initialTranslation = sender.translationInView(view)
+        }
+        
+        let offsetPoint = translation.offset(by: initialTranslation)
         
         if sender.state == .Began {
             initialTopConstraintConstant = slideyTopConstraint.constant
         }
         else if sender.state == .Ended && panGestureRecognizingState == .Active {
-            snapToPosition(calculatePosition(from: calculateTopConstraintConstant(from: translation.y), with: velocity.y))
+            snapToPosition(calculatePosition(from: calculateTopConstraintConstant(from: offsetPoint.y), with: velocity.y))
         }
         else if sender.state == .Changed && panGestureRecognizingState == .Active {
-            adjustConstraints(with: translation)
-            adjustDimmingView(with: translation)
+            adjustConstraints(with: offsetPoint)
+            adjustDimmingView(with: offsetPoint)
         }
     }
 }
