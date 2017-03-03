@@ -97,7 +97,7 @@ public class SlideyController: UIViewController {
     }
     
     private var dimmingView = UIView()
-    private var positiveHeightRatio: Bool = true
+    
     private var minTopConstraintConstant: CGFloat = 0.0
     private var maxTopConstraintConstant: CGFloat = 0.0
     private var initialTopConstraintConstant: CGFloat = 0.0
@@ -217,7 +217,7 @@ private extension SlideyController {
     
     func setConstants(size: CGSize)
     {
-        positiveHeightRatio = size.height > size.width
+        let positiveHeightRatio = size.height > size.width
         minTopConstraintConstant = positiveHeightRatio ? size.height * 0.2 : size.height * 0.1
         maxTopConstraintConstant = positiveHeightRatio ? size.height * 0.6 : size.height * 0.55
     }
