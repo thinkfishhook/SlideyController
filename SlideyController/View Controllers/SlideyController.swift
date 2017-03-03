@@ -42,7 +42,7 @@ public class SlideyController: UIViewController {
     
     // MARK: View Life Cycle
     
-    override public func viewDidLoad()
+    public override func viewDidLoad()
     {
         super.viewDidLoad()
         
@@ -59,29 +59,11 @@ public class SlideyController: UIViewController {
         backView.addEquallyPinnedSubview(dimmingView)
     }
     
-    public override func viewDidAppear(animated: Bool)
+    public override func viewWillLayoutSubviews()
     {
-        super.viewDidAppear(animated)
+        super.viewWillLayoutSubviews()
         
         setConstants(view.frame.size)
-        
-        backViewController?.bottomOffsetDidChange?(minTopConstraintConstant)
-        slideyTopConstraint.constant = maxTopConstraintConstant
-    }
-    
-    public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
-    {
-        setConstants(size)
-        
-        backViewController?.bottomOffsetDidChange?(minTopConstraintConstant)
-        
-        switch slideyPosition {
-        case .Top:
-            slideyTopConstraint.constant = minTopConstraintConstant
-            
-        case .Bottom:
-            slideyTopConstraint.constant = maxTopConstraintConstant
-        }
     }
     
     private var panGestureRecognizingState: GestureState = .Active
@@ -225,8 +207,28 @@ private extension SlideyController {
     func setConstants(size: CGSize)
     {
         let positiveHeightRatio = size.height > size.width
-        minTopConstraintConstant = positiveHeightRatio ? size.height * 0.2 : size.height * 0.1
-        maxTopConstraintConstant = positiveHeightRatio ? size.height * 0.6 : size.height * 0.55
+        let newMin = positiveHeightRatio ? size.height * 0.2 : size.height * 0.1
+        let newMax = positiveHeightRatio ? size.height * 0.6 : size.height * 0.55
+        
+        if newMin != minTopConstraintConstant {
+            minTopConstraintConstant = newMin
+            if slideyPosition == .Top {
+                slideyTopConstraint.constant = minTopConstraintConstant
+            }
+            else if slideyPosition == .Bottom {
+                backViewController?.bottomOffsetDidChange?(minTopConstraintConstant)
+            }
+        }
+        
+        if newMax != maxTopConstraintConstant {
+            maxTopConstraintConstant = newMax
+            if slideyPosition == .Bottom {
+                slideyTopConstraint.constant = maxTopConstraintConstant
+            }
+            else if slideyPosition == .Top {
+                backViewController?.bottomOffsetDidChange?(maxTopConstraintConstant)
+            }
+        }
     }
     
     func snapToPosition(newPosition: Position, animated: Bool = true)
