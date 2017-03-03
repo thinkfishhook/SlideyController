@@ -67,7 +67,6 @@ public class SlideyController: UIViewController {
         
         backViewController?.bottomOffsetDidChange?(minTopConstraintConstant)
         slideyTopConstraint.constant = maxTopConstraintConstant
-        relativeAlpha = 1 - (slideyTopConstraint.constant / view.frame.height)
     }
     
     public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
@@ -101,7 +100,6 @@ public class SlideyController: UIViewController {
     private var minTopConstraintConstant: CGFloat = 0.0
     private var maxTopConstraintConstant: CGFloat = 0.0
     private var initialTopConstraintConstant: CGFloat = 0.0
-    private var relativeAlpha: CGFloat = 0.0
     
     private var slideyPosition = Position.Top {
         didSet {
@@ -110,14 +108,12 @@ public class SlideyController: UIViewController {
             case .Bottom:
                 slideableViewController?.didSnapToBottom()
                 backViewController?.isUserInteractionEnabled = true
-                dimmingView.alpha = 0
                 
             case .Top:
                 panGestureRecognizingState = .Inactive
                 
                 slideableViewController?.didSnapToTop()
                 backViewController?.isUserInteractionEnabled = false
-                dimmingView.alpha = 0.5
             }
         }
     }
@@ -142,13 +138,19 @@ extension SlideyController {
             panGestureRecognizingState = .Active
         }
         
+        let translation = sender.translationInView(view)
+        let velocity = sender.velocityInView(view)
+        
         if sender.state == .Began {
             initialTopConstraintConstant = slideyTopConstraint.constant
         }
-        
-        guard panGestureRecognizingState == .Active else { return }
-        
-        adjustConstraints(sender.state, translation: sender.translationInView(view), velocity: sender.velocityInView(view))
+        else if sender.state == .Ended && panGestureRecognizingState == .Active {
+            snapToPosition(calculatePosition(from: calculateTopConstraintConstant(from: translation.y), with: velocity.y))
+        }
+        else if sender.state == .Changed && panGestureRecognizingState == .Active {
+            adjustConstraints(with: translation)
+            adjustDimmingView(with: translation)
+        }
     }
 }
 
@@ -174,21 +176,14 @@ private extension SlideyController {
         slideyView.addEquallyPinnedSubview(view)
     }
     
-    func adjustConstraints(_ state: UIGestureRecognizerState, translation: CGPoint, velocity: CGPoint)
+    func adjustConstraints(with translation: CGPoint)
     {
-        let newTopConstraintConstant = calculateTopConstraintConstant(from: translation.y)
-        
-        switch state {
-        case .Changed:
-            
-            slideyTopConstraint.constant = newTopConstraintConstant
-            
-        case .Ended:
-            snapToPosition(calculatePosition(from: newTopConstraintConstant, with: velocity.y))
-            
-        default:
-            break
-        }
+        slideyTopConstraint.constant = calculateTopConstraintConstant(from: translation.y)
+    }
+    
+    func adjustDimmingView(with translation: CGPoint)
+    {
+        dimmingView.alpha = calculateAlpha(from: translation.y) / 2.0
     }
     
     func calculatePosition(from topConstraintConstant: CGFloat, with verticalVelocity: CGFloat = 0.0) -> Position
@@ -215,6 +210,14 @@ private extension SlideyController {
         return newConstant
     }
     
+    func calculateAlpha(from yTranslation: CGFloat) -> CGFloat
+    {
+        // min constraint < calc'd constrant < max constraint
+        //    alpha 1.0   <   calc'd alpha   <   alpha 0.0
+        
+        return 1.0 - (calculateTopConstraintConstant(from: yTranslation) - minTopConstraintConstant) / (maxTopConstraintConstant - minTopConstraintConstant)
+    }
+    
     func setConstants(size: CGSize)
     {
         let positiveHeightRatio = size.height > size.width
@@ -224,13 +227,16 @@ private extension SlideyController {
     
     func snapToPosition(newPosition: Position, animated: Bool = true)
     {
+        let duration = animated ? 0.333 : 0.0
         let constant = newPosition == .Top ? minTopConstraintConstant : maxTopConstraintConstant
+        let alpha: CGFloat = newPosition == .Top ? 0.5 : 0.0
         
-        UIView.animateWithDuration(0.333,
+        UIView.animateWithDuration(duration,
                                    delay: 0,
                                    options: .BeginFromCurrentState,
                                    animations: {
                                     self.slideyTopConstraint.constant = constant
+                                    self.dimmingView.alpha = alpha
                                     self.view.layoutIfNeeded()
             },
                                    completion: { _ in
