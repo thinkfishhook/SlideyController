@@ -19,6 +19,7 @@ public class SlideyController: UIViewController {
             addChildViewControllerProtocol(viewController)
             if isViewLoaded() {
                 addSlideSubview(viewController.view)
+                slideyPosition == .Bottom ? viewController.didSnapToBottom() : viewController.didSnapToTop()
             }
         }
     }
@@ -36,6 +37,7 @@ public class SlideyController: UIViewController {
             addChildViewControllerProtocol(viewController)
             if isViewLoaded() {
                 addBackSubview(viewController.view)
+                slideyPosition == .Bottom ? viewController.bottomOffsetDidChange?(minTopConstraintConstant) : viewController.bottomOffsetDidChange?(maxTopConstraintConstant)
             }
         }
     }
@@ -48,10 +50,12 @@ public class SlideyController: UIViewController {
         
         if let view = backViewController?.view {
             addBackSubview(view)
+            slideyPosition == .Bottom ? backViewController?.bottomOffsetDidChange?(minTopConstraintConstant) : backViewController?.bottomOffsetDidChange?(maxTopConstraintConstant)
         }
         
         if let view = slideableViewController?.view {
             addSlideSubview(view)
+            slideyPosition == .Bottom ? slideableViewController?.didSnapToBottom() : slideableViewController?.didSnapToTop()
         }
         
         dimmingView.alpha = 0
@@ -84,7 +88,7 @@ public class SlideyController: UIViewController {
     private var initialTopConstraintConstant: CGFloat = 0.0
     private var initialTranslation = CGPointZero
     
-    private var slideyPosition = Position.Top {
+    private var slideyPosition = Position.Bottom {
         didSet {
             
             switch (oldValue, slideyPosition) {
