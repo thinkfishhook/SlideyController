@@ -87,16 +87,24 @@ public class SlideyController: UIViewController {
     private var slideyPosition = Position.Top {
         didSet {
             
-            switch slideyPosition {
-            case .Bottom:
+            switch (oldValue, slideyPosition) {
+            case (.Top, .Bottom):
                 slideableViewController?.didSnapToBottom()
+                backViewController?.bottomOffsetDidChange?(minTopConstraintConstant)
                 backViewController?.isUserInteractionEnabled = true
                 
-            case .Top:
+            case (.Bottom, .Top):
                 panGestureRecognizingState = .Inactive
                 
                 slideableViewController?.didSnapToTop()
+                backViewController?.bottomOffsetDidChange?(maxTopConstraintConstant)
                 backViewController?.isUserInteractionEnabled = false
+                
+            case (_, .Top):
+                panGestureRecognizingState = .Inactive
+                
+            default:
+                break
             }
         }
     }
