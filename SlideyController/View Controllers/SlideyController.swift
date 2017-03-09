@@ -101,7 +101,6 @@ public class SlideyController: UIViewController {
                 panGestureRecognizingState = .Inactive
                 
                 slideableViewController?.didSnapToTop()
-                backViewController?.bottomOffsetDidChange?(maxTopConstraintConstant)
                 backViewController?.isUserInteractionEnabled = false
                 
             case (_, .Top):
