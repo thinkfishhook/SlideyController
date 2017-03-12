@@ -70,6 +70,13 @@ public class SlideyController: UIViewController {
         setConstants(view.frame.size)
     }
     
+    public override func viewDidLayoutSubviews()
+    {
+        super.viewDidLayoutSubviews()
+        
+        updateOffsetsIfNeeded()
+    }
+    
     private var panGestureRecognizingState: GestureState = .Active
     
     @IBOutlet private weak var panGestureRecognizer: UIPanGestureRecognizer!
@@ -87,6 +94,7 @@ public class SlideyController: UIViewController {
     private var maxTopConstraintConstant: CGFloat = 0.0
     private var initialTopConstraintConstant: CGFloat = 0.0
     private var initialTranslation = CGPointZero
+    private var offsetsUpdateNeeded = false
     
     private var slideyPosition = Position.Bottom {
         didSet {
@@ -94,13 +102,14 @@ public class SlideyController: UIViewController {
             switch (oldValue, slideyPosition) {
             case (.Top, .Bottom):
                 slideableViewController?.didSnapToBottom()
-                backViewController?.bottomOffsetDidChange?(minTopConstraintConstant)
+                backViewController?.bottomOffsetDidChange?(CGRectGetHeight(slideyView.frame))
                 backViewController?.isUserInteractionEnabled = true
                 
             case (.Bottom, .Top):
                 panGestureRecognizingState = .Inactive
                 
                 slideableViewController?.didSnapToTop()
+                backViewController?.bottomOffsetDidChange?(CGRectGetHeight(slideyView.frame))
                 backViewController?.isUserInteractionEnabled = false
                 
             case (_, .Top):
@@ -126,7 +135,7 @@ public class SlideyController: UIViewController {
 // MARK: Interface Builder Actions
 extension SlideyController {
     
-    @IBAction func gestureRecognized(_ sender: UIPanGestureRecognizer)
+    @IBAction func gestureRecognized(sender: UIPanGestureRecognizer)
     {
         let translation = sender.translationInView(view)
         let velocity = sender.velocityInView(view)
@@ -163,12 +172,12 @@ extension SlideyController: UIGestureRecognizerDelegate {
 // MARK: Private Helpers
 private extension SlideyController {
     
-    func addBackSubview(_ view: UIView)
+    func addBackSubview(view: UIView)
     {
         backView.addEquallyPinnedSubview(view)
     }
     
-    func addSlideSubview(_ view: UIView)
+    func addSlideSubview(view: UIView)
     {
         slideyView.addEquallyPinnedSubview(view)
     }
@@ -223,23 +232,32 @@ private extension SlideyController {
         
         if newMin != minTopConstraintConstant {
             minTopConstraintConstant = newMin
+            setNeedsOffsetsUpdate()
             if slideyPosition == .Top {
                 slideyTopConstraint.constant = minTopConstraintConstant
-            }
-            else if slideyPosition == .Bottom {
-                backViewController?.bottomOffsetDidChange?(minTopConstraintConstant)
             }
         }
         
         if newMax != maxTopConstraintConstant {
             maxTopConstraintConstant = newMax
+            setNeedsOffsetsUpdate()
             if slideyPosition == .Bottom {
                 slideyTopConstraint.constant = maxTopConstraintConstant
             }
-            else if slideyPosition == .Top {
-                backViewController?.bottomOffsetDidChange?(maxTopConstraintConstant)
-            }
         }
+    }
+    
+    func setNeedsOffsetsUpdate()
+    {
+        offsetsUpdateNeeded = true
+    }
+    
+    func updateOffsetsIfNeeded()
+    {
+        guard offsetsUpdateNeeded else { return }
+        
+        backViewController?.bottomOffsetDidChange?(CGRectGetHeight(slideyView.frame))
+        offsetsUpdateNeeded = false
     }
     
     func snapToPosition(newPosition: Position, animated: Bool = true)
