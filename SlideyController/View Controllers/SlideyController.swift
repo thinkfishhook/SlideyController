@@ -50,12 +50,10 @@ public class SlideyController: UIViewController {
         
         if let view = backViewController?.view {
             addBackSubview(view)
-            slideyPosition == .Bottom ? backViewController?.bottomOffsetDidChange?(minTopConstraintConstant) : backViewController?.bottomOffsetDidChange?(maxTopConstraintConstant)
         }
         
         if let view = slideableViewController?.view {
             addSlideSubview(view)
-            slideyPosition == .Bottom ? slideableViewController?.didSnapToBottom() : slideableViewController?.didSnapToTop()
         }
         
         dimmingView.alpha = 0
@@ -63,18 +61,34 @@ public class SlideyController: UIViewController {
         backView.addEquallyPinnedSubview(dimmingView)
     }
     
+    public override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
+
+        switch slideyPosition {
+        case .Bottom:
+            slideableViewController?.didSnapToBottom()
+        case .Top:
+            slideableViewController?.didSnapToTop()
+        }
+        
+        updateOffsetsIfNeeded()
+    }
+    
     public override func viewWillLayoutSubviews()
     {
         super.viewWillLayoutSubviews()
-        
+
         setConstants(view.frame.size)
     }
     
-    public override func viewDidLayoutSubviews()
+    public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
     {
-        super.viewDidLayoutSubviews()
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         
-        updateOffsetsIfNeeded()
+        setConstants(size)
+        
+        coordinator.animateAlongsideTransition(nil, completion: { _ in self.updateOffsetsIfNeeded() })
     }
     
     private var panGestureRecognizingState: GestureState = .Active
@@ -254,6 +268,17 @@ private extension SlideyController {
     
     func updateOffsetsIfNeeded()
     {
+        // NOTE: It is tempting to DRY up code and only call this method from
+        // one place - `viewDidLayoutSubviews()`. However, that is too early to
+        // notify child view controllers of the offset change; their views will
+        // not have correct frame values.
+        //
+        // In my mind, the name `didLayoutSubviews()` implies a cascading event
+        // has happened in which child view controllers' views have been laid
+        // out and their view controller notified of the change.
+        // 
+        // However, in practice this is not the case.
+        
         guard offsetsUpdateNeeded else { return }
         
         backViewController?.bottomOffsetDidChange?(CGRectGetHeight(slideyView.frame))
