@@ -6,7 +6,7 @@ import UIKit
 
 extension UIView {
     
-    func addEquallyPinnedSubview(_ subview: UIView)
+    func addEquallyPinnedSubview(subview: UIView)
     {
         addSubview(subview)
         
