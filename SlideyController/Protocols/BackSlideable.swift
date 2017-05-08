@@ -6,5 +6,5 @@
     
     var isUserInteractionEnabled: Bool { get set }
     
-    optional func bottomOffsetDidChange(offset: CGFloat)
+    @objc optional func bottomOffsetDidChange(_ offset: CGFloat)
 }

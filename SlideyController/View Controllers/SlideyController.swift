@@ -4,7 +4,7 @@
 
 import UIKit
 
-public class SlideyController: UIViewController {
+public final class SlideyController: UIViewController {
     
     public var slideableViewController: FrontSlideable? {
         willSet {
@@ -16,10 +16,10 @@ public class SlideyController: UIViewController {
         didSet {
             guard let viewController = slideableViewController else { return }
             
-            addChildViewControllerProtocol(viewController)
-            if isViewLoaded() {
+            add(childViewController: viewController)
+            if isViewLoaded {
                 addSlideSubview(viewController.view)
-                slideyPosition == .Bottom ? viewController.didSnapToBottom() : viewController.didSnapToTop()
+                slideyPosition == .bottom ? viewController.didSnapToBottom() : viewController.didSnapToTop()
             }
         }
     }
@@ -34,10 +34,10 @@ public class SlideyController: UIViewController {
         didSet {
             guard let viewController = backViewController else { return }
             
-            addChildViewControllerProtocol(viewController)
-            if isViewLoaded() {
+            add(childViewController: viewController)
+            if isViewLoaded {
                 addBackSubview(viewController.view)
-                slideyPosition == .Bottom ? viewController.bottomOffsetDidChange?(minTopConstraintConstant) : viewController.bottomOffsetDidChange?(maxTopConstraintConstant)
+                slideyPosition == .bottom ? viewController.bottomOffsetDidChange?(minTopConstraintConstant) : viewController.bottomOffsetDidChange?(maxTopConstraintConstant)
             }
         }
     }
@@ -57,18 +57,18 @@ public class SlideyController: UIViewController {
         }
         
         dimmingView.alpha = 0
-        dimmingView.backgroundColor = UIColor.blackColor()
-        backView.addEquallyPinnedSubview(dimmingView)
+        dimmingView.backgroundColor = UIColor.black
+        backView.addEquallyPinned(subview: dimmingView)
     }
     
-    public override func viewDidAppear(animated: Bool)
+    public override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
 
         switch slideyPosition {
-        case .Bottom:
+        case .bottom:
             slideableViewController?.didSnapToBottom()
-        case .Top:
+        case .top:
             slideableViewController?.didSnapToTop()
         }
         
@@ -82,52 +82,52 @@ public class SlideyController: UIViewController {
         setConstants(view.frame.size)
     }
     
-    public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
     {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        super.viewWillTransition(to: size, with: coordinator)
         
         setConstants(size)
         
-        coordinator.animateAlongsideTransition(nil, completion: { _ in self.updateOffsetsIfNeeded() })
+        coordinator.animate(alongsideTransition: nil, completion: { _ in self.updateOffsetsIfNeeded() })
     }
     
-    private var panGestureRecognizingState: GestureState = .Active
+    fileprivate var panGestureRecognizingState: GestureState = .active
     
     @IBOutlet private weak var panGestureRecognizer: UIPanGestureRecognizer!
-    @IBOutlet private weak var slideyTopConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var backView: UIView!
-    @IBOutlet private weak var slideyView: UIView! {
+    @IBOutlet fileprivate weak var slideyTopConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var backView: UIView!
+    @IBOutlet fileprivate weak var slideyView: UIView! {
         didSet {
             slideyView.addDropShadow()
         }
     }
     
-    private var dimmingView = UIView()
+    fileprivate var dimmingView = UIView()
     
-    private var minTopConstraintConstant: CGFloat = 0.0
-    private var maxTopConstraintConstant: CGFloat = 0.0
-    private var initialTopConstraintConstant: CGFloat = 0.0
-    private var initialTranslation = CGPointZero
-    private var offsetsUpdateNeeded = false
+    fileprivate var minTopConstraintConstant: CGFloat = 0.0
+    fileprivate var maxTopConstraintConstant: CGFloat = 0.0
+    fileprivate var initialTopConstraintConstant: CGFloat = 0.0
+    fileprivate var initialTranslation = CGPoint.zero
+    fileprivate var offsetsUpdateNeeded = false
     
-    private var slideyPosition = Position.Bottom {
+    fileprivate var slideyPosition = Position.bottom {
         didSet {
             
             switch (oldValue, slideyPosition) {
-            case (.Top, .Bottom):
+            case (.top, .bottom):
                 slideableViewController?.didSnapToBottom()
-                backViewController?.bottomOffsetDidChange?(CGRectGetHeight(slideyView.frame))
+                backViewController?.bottomOffsetDidChange?(slideyView.frame.height)
                 backViewController?.isUserInteractionEnabled = true
                 
-            case (.Bottom, .Top):
-                panGestureRecognizingState = .Inactive
+            case (.bottom, .top):
+                panGestureRecognizingState = .inactive
                 
                 slideableViewController?.didSnapToTop()
-                backViewController?.bottomOffsetDidChange?(CGRectGetHeight(slideyView.frame))
+                backViewController?.bottomOffsetDidChange?(slideyView.frame.height)
                 backViewController?.isUserInteractionEnabled = false
                 
-            case (_, .Top):
-                panGestureRecognizingState = .Inactive
+            case (_, .top):
+                panGestureRecognizingState = .inactive
                 
             default:
                 break
@@ -135,39 +135,39 @@ public class SlideyController: UIViewController {
         }
     }
     
-    private enum Position {
-        case Bottom
-        case Top
+    fileprivate enum Position {
+        case bottom
+        case top
     }
     
-    private enum GestureState {
-        case Active
-        case Inactive
+    fileprivate enum GestureState {
+        case active
+        case inactive
     }
 }
 
 // MARK: Interface Builder Actions
 extension SlideyController {
     
-    @IBAction func gestureRecognized(sender: UIPanGestureRecognizer)
+    @IBAction func gestureRecognized(_ sender: UIPanGestureRecognizer)
     {
-        let translation = sender.translationInView(view)
-        let velocity = sender.velocityInView(view)
+        let translation = sender.translation(in: view)
+        let velocity = sender.velocity(in: view)
         
-        if panGestureRecognizingState == .Inactive && slideableViewController?.overScrolling == true  {
-            panGestureRecognizingState = .Active
-            initialTranslation = sender.translationInView(view)
+        if panGestureRecognizingState == .inactive && slideableViewController?.overScrolling == true  {
+            panGestureRecognizingState = .active
+            initialTranslation = sender.translation(in: view)
         }
         
         let offsetPoint = translation.offset(by: initialTranslation)
         
-        if sender.state == .Began {
+        if sender.state == .began {
             initialTopConstraintConstant = slideyTopConstraint.constant
         }
-        else if sender.state == .Ended && panGestureRecognizingState == .Active {
+        else if sender.state == .ended && panGestureRecognizingState == .active {
             snapToPosition(calculatePosition(from: calculateTopConstraintConstant(from: offsetPoint.y), with: velocity.y))
         }
-        else if sender.state == .Changed && panGestureRecognizingState == .Active {
+        else if sender.state == .changed && panGestureRecognizingState == .active {
             adjustConstraints(with: offsetPoint)
             adjustDimmingView(with: offsetPoint)
         }
@@ -177,7 +177,7 @@ extension SlideyController {
 // MARK: Gesture Recognizer Delegate
 extension SlideyController: UIGestureRecognizerDelegate {
     
-    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
     {
         return true
     }
@@ -186,14 +186,14 @@ extension SlideyController: UIGestureRecognizerDelegate {
 // MARK: Private Helpers
 private extension SlideyController {
     
-    func addBackSubview(view: UIView)
+    func addBackSubview(_ view: UIView)
     {
-        backView.addEquallyPinnedSubview(view)
+        backView.addEquallyPinned(subview: view)
     }
     
-    func addSlideSubview(view: UIView)
+    func addSlideSubview(_ view: UIView)
     {
-        slideyView.addEquallyPinnedSubview(view)
+        slideyView.addEquallyPinned(subview: view)
     }
     
     func adjustConstraints(with translation: CGPoint)
@@ -209,10 +209,10 @@ private extension SlideyController {
     func calculatePosition(from topConstraintConstant: CGFloat, with verticalVelocity: CGFloat = 0.0) -> Position
     {
         if topConstraintConstant + verticalVelocity * 0.5 > maxTopConstraintConstant * 0.51 {
-            return .Bottom
+            return .bottom
         }
         else {
-            return .Top
+            return .top
         }
     }
     
@@ -238,7 +238,7 @@ private extension SlideyController {
         return 1.0 - (calculateTopConstraintConstant(from: yTranslation) - minTopConstraintConstant) / (maxTopConstraintConstant - minTopConstraintConstant)
     }
     
-    func setConstants(size: CGSize)
+    func setConstants(_ size: CGSize)
     {
         let positiveHeightRatio = size.height > size.width
         let newMin = positiveHeightRatio ? size.height * 0.2 : size.height * 0.1
@@ -247,7 +247,7 @@ private extension SlideyController {
         if newMin != minTopConstraintConstant {
             minTopConstraintConstant = newMin
             setNeedsOffsetsUpdate()
-            if slideyPosition == .Top {
+            if slideyPosition == .top {
                 slideyTopConstraint.constant = minTopConstraintConstant
             }
         }
@@ -255,7 +255,7 @@ private extension SlideyController {
         if newMax != maxTopConstraintConstant {
             maxTopConstraintConstant = newMax
             setNeedsOffsetsUpdate()
-            if slideyPosition == .Bottom {
+            if slideyPosition == .bottom {
                 slideyTopConstraint.constant = maxTopConstraintConstant
             }
         }
@@ -281,19 +281,19 @@ private extension SlideyController {
         
         guard offsetsUpdateNeeded else { return }
         
-        backViewController?.bottomOffsetDidChange?(CGRectGetHeight(slideyView.frame))
+        backViewController?.bottomOffsetDidChange?(slideyView.frame.height)
         offsetsUpdateNeeded = false
     }
     
-    func snapToPosition(newPosition: Position, animated: Bool = true)
+    func snapToPosition(_ newPosition: Position, animated: Bool = true)
     {
         let duration = animated ? 0.333 : 0.0
-        let constant = newPosition == .Top ? minTopConstraintConstant : maxTopConstraintConstant
-        let alpha: CGFloat = newPosition == .Top ? 0.5 : 0.0
+        let constant = newPosition == .top ? minTopConstraintConstant : maxTopConstraintConstant
+        let alpha: CGFloat = newPosition == .top ? 0.5 : 0.0
         
-        UIView.animateWithDuration(duration,
+        UIView.animate(withDuration: duration,
                                    delay: 0,
-                                   options: .BeginFromCurrentState,
+                                   options: .beginFromCurrentState,
                                    animations: {
                                     self.slideyTopConstraint.constant = constant
                                     self.dimmingView.alpha = alpha

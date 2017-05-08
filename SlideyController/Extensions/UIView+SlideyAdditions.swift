@@ -6,22 +6,22 @@ import UIKit
 
 extension UIView {
     
-    func addEquallyPinnedSubview(subview: UIView)
+    func addEquallyPinned(subview: UIView)
     {
         addSubview(subview)
         
         subview.translatesAutoresizingMaskIntoConstraints = false
         
-        leadingAnchor.constraintEqualToAnchor(subview.leadingAnchor).active = true
-        trailingAnchor.constraintEqualToAnchor(subview.trailingAnchor).active = true
-        topAnchor.constraintEqualToAnchor(subview.topAnchor).active = true
-        bottomAnchor.constraintEqualToAnchor(subview.bottomAnchor).active = true
+        leadingAnchor.constraint(equalTo: subview.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: subview.trailingAnchor).isActive = true
+        topAnchor.constraint(equalTo: subview.topAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: subview.bottomAnchor).isActive = true
     }
     
-    func addDropShadow(radius: CGFloat = 5, opacity: Float = 0.2)
+    func addDropShadow(with radius: CGFloat = 5, opacity: Float = 0.2)
     {
         layer.masksToBounds = false
-        layer.shadowColor = UIColor.blackColor().CGColor
+        layer.shadowColor = UIColor.black.cgColor
         
         layer.shadowRadius = radius
         layer.shadowOpacity = opacity
