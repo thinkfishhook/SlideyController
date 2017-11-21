@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g8x-vb-VvS">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Slidey Controller-->
+        <scene sceneID="q8y-RW-ivN">
+            <objects>
+                <viewController storyboardIdentifier="SlideyController" id="g8x-vb-VvS" customClass="SlideyController" customModule="SlideyController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="q9H-qc-0e4"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xmc-oA-8Gg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K0i-2v-jMz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2I8-a4-wTI" userLabel="Back View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ni5-Dp-BRg" userLabel="Slide View">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="PZa-0t-Ylp" appends="YES" id="SqA-7c-gSE"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ni5-Dp-BRg" secondAttribute="trailing" id="0aw-e7-bna"/>
+                            <constraint firstAttribute="bottom" secondItem="ni5-Dp-BRg" secondAttribute="bottom" id="1Zf-ae-B6V"/>
+                            <constraint firstItem="2I8-a4-wTI" firstAttribute="leading" secondItem="K0i-2v-jMz" secondAttribute="leading" id="7U9-GL-hpI"/>
+                            <constraint firstAttribute="trailing" secondItem="2I8-a4-wTI" secondAttribute="trailing" id="Cmq-Vb-do4"/>
+                            <constraint firstItem="ni5-Dp-BRg" firstAttribute="leading" secondItem="K0i-2v-jMz" secondAttribute="leading" id="MaP-1e-sBm"/>
+                            <constraint firstItem="ni5-Dp-BRg" firstAttribute="top" secondItem="5tz-Yc-5Jf" secondAttribute="top" constant="100" id="O0w-0g-GXv"/>
+                            <constraint firstAttribute="bottom" secondItem="2I8-a4-wTI" secondAttribute="bottom" id="X0w-Oi-Fn3"/>
+                            <constraint firstItem="2I8-a4-wTI" firstAttribute="top" secondItem="K0i-2v-jMz" secondAttribute="top" id="vXW-Ca-Pm6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5tz-Yc-5Jf"/>
+                    </view>
+                    <connections>
+                        <outlet property="backView" destination="2I8-a4-wTI" id="Yje-Ab-Tab"/>
+                        <outlet property="panGestureRecognizer" destination="PZa-0t-Ylp" id="owr-Rl-de1"/>
+                        <outlet property="slideyTopConstraint" destination="O0w-0g-GXv" id="ANm-Ui-OTS"/>
+                        <outlet property="slideyView" destination="ni5-Dp-BRg" id="pUA-Wo-I7Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lxb-Ce-PUw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="PZa-0t-Ylp">
+                    <connections>
+                        <action selector="gestureRecognized:" destination="g8x-vb-VvS" id="uqI-Q7-taF"/>
+                        <outlet property="delegate" destination="g8x-vb-VvS" id="apZ-63-ecA"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="3297" y="-185"/>
+        </scene>
+    </scenes>
+</document>

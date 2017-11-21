@@ -14,7 +14,7 @@ class TableViewController: UITableViewController {
 
 extension TableViewController {
     
-    override func scrollViewDidScroll(scrollView: UIScrollView)
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) 
     {
         overScrolling = scrollView.contentOffset.y <= 0 ? true : false
     }
@@ -26,11 +26,11 @@ extension TableViewController: FrontSlideable {
     
     func didSnapToBottom()
     {
-        tableView.scrollEnabled = false
+        tableView.isScrollEnabled = false
     }
     
     func didSnapToTop()
     {
-        tableView.scrollEnabled = true
+        tableView.isScrollEnabled = true
     }
 }

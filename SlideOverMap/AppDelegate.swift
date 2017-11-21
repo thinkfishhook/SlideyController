@@ -10,13 +10,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool
     {
-        let rootViewController = window?.rootViewController as! SlideyController
-        let storyboard = rootViewController.storyboard
+        let storyboard = window?.rootViewController?.storyboard
         
-        let mapViewController = storyboard?.instantiateViewControllerWithIdentifier("Map View Controller") as! MapViewController
-        let tableViewController = storyboard?.instantiateViewControllerWithIdentifier("Table View Controller") as! TableViewController
+        let rootViewController = storyboard?.instantiateViewController(withIdentifier: "SlideyController") as! SlideyController
+        let mapViewController = storyboard?.instantiateViewController(withIdentifier: "Map View Controller") as! MapViewController
+        let tableViewController = storyboard?.instantiateViewController(withIdentifier: "Table View Controller") as! TableViewController
+        
+        window?.rootViewController = rootViewController
         
         rootViewController.backViewController = mapViewController
         rootViewController.slideableViewController = tableViewController

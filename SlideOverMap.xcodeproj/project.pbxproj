@@ -23,6 +23,7 @@
 		2ACFCBBF1E55009200F23F4F /* UIViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBBE1E55009200F23F4F /* UIViewControllerProtocol.swift */; };
 		2ACFCBC11E5500C100F23F4F /* FrontSlideable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBC01E5500C100F23F4F /* FrontSlideable.swift */; };
 		2ACFCBC31E55037900F23F4F /* UIViewController+SlideyAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFCBC21E55037900F23F4F /* UIViewController+SlideyAdditions.swift */; };
+		2AD2E8E61FC4BE69007EC491 /* SlideyController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD2E8E51FC4BE69007EC491 /* SlideyController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		2ACFCBBE1E55009200F23F4F /* UIViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerProtocol.swift; sourceTree = "<group>"; };
 		2ACFCBC01E5500C100F23F4F /* FrontSlideable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontSlideable.swift; sourceTree = "<group>"; };
 		2ACFCBC21E55037900F23F4F /* UIViewController+SlideyAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+SlideyAdditions.swift"; sourceTree = "<group>"; };
+		2AD2E8E51FC4BE69007EC491 /* SlideyController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SlideyController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			children = (
 				2ACFCBB61E54FF5600F23F4F /* View Controllers */,
 				2ACFCBB21E54FF3700F23F4F /* Protocols */,
+				2AD2E8E51FC4BE69007EC491 /* SlideyController.storyboard */,
 			);
 			name = Public;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AD2E8E61FC4BE69007EC491 /* SlideyController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +469,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fishhook.slideover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -479,7 +483,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fishhook.slideover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
