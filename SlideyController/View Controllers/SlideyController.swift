@@ -107,7 +107,7 @@ public final class SlideyController: UIViewController {
     fileprivate var minTopConstraintConstant: CGFloat = 0.0
     fileprivate var maxTopConstraintConstant: CGFloat = 0.0
     fileprivate var initialTopConstraintConstant: CGFloat = 0.0
-    fileprivate var initialTranslation = CGPoint.zero
+    fileprivate var initialTranslation: CGPoint = .zero
     fileprivate var offsetsUpdateNeeded = false
     
     fileprivate var slideyPosition = Position.bottom {
