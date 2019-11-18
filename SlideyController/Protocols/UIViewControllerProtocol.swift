@@ -8,7 +8,7 @@ import UIKit
     
     var view: UIView! { get }
     
-    func removeFromParentViewController()
+    @objc(removeFromParentViewController) func removeFromParent()
 }
 
 extension UIViewController: UIViewControllerProtocol { }

@@ -12,6 +12,6 @@ extension UIViewController {
             fatalError("add(childViewControllerProtocol: UIViewControllerProtocol) must be called with UIViewController")
         }
         
-        addChildViewController(viewController)
+        addChild(viewController)
     }
 }
