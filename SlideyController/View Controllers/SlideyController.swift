@@ -11,7 +11,7 @@ public final class SlideyController: UIViewController {
             guard let viewController = slideableViewController else { return }
             
             viewController.view.removeFromSuperview()
-            viewController.removeFromParentViewController()
+            viewController.removeFromParent()
         }
         didSet {
             guard let viewController = slideableViewController else { return }
@@ -29,7 +29,7 @@ public final class SlideyController: UIViewController {
             guard let viewController = backViewController else { return }
             
             viewController.view.removeFromSuperview()
-            viewController.removeFromParentViewController()
+            viewController.removeFromParent()
         }
         didSet {
             guard let viewController = backViewController else { return }
@@ -91,26 +91,26 @@ public final class SlideyController: UIViewController {
         coordinator.animate(alongsideTransition: nil, completion: { _ in self.updateOffsetsIfNeeded() })
     }
     
-    fileprivate var panGestureRecognizingState: GestureState = .active
+    private var panGestureRecognizingState: GestureState = .active
     
     @IBOutlet private weak var panGestureRecognizer: UIPanGestureRecognizer!
-    @IBOutlet fileprivate weak var slideyTopConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var backView: UIView!
-    @IBOutlet fileprivate weak var slideyView: UIView! {
+    @IBOutlet private weak var slideyTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var backView: UIView!
+    @IBOutlet private weak var slideyView: UIView! {
         didSet {
             slideyView.addDropShadow()
         }
     }
     
-    fileprivate var dimmingView = UIView()
+    private var dimmingView = UIView()
     
-    fileprivate var minTopConstraintConstant: CGFloat = 0.0
-    fileprivate var maxTopConstraintConstant: CGFloat = 0.0
-    fileprivate var initialTopConstraintConstant: CGFloat = 0.0
-    fileprivate var initialTranslation: CGPoint = .zero
-    fileprivate var offsetsUpdateNeeded = false
+    private var minTopConstraintConstant: CGFloat = 0.0
+    private var maxTopConstraintConstant: CGFloat = 0.0
+    private var initialTopConstraintConstant: CGFloat = 0.0
+    private var initialTranslation: CGPoint = .zero
+    private var offsetsUpdateNeeded = false
     
-    fileprivate var slideyPosition = Position.bottom {
+    private var slideyPosition = Position.bottom {
         didSet {
             
             switch (oldValue, slideyPosition) {
@@ -140,7 +140,7 @@ public final class SlideyController: UIViewController {
         case top
     }
     
-    fileprivate enum GestureState {
+    private enum GestureState {
         case active
         case inactive
     }
